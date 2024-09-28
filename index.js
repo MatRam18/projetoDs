@@ -1,17 +1,17 @@
 const express = require('express')
 const server = express()
-const alunos = require("./src/teste.json")
-
+const usuario = require("./src/teste.json")
+const tarefa = require("./src/teste1.json")
 server.get("/", (req, res) =>{
     return res.json({mensagem: "Hello Node"})
 })
 
-server.get("/soul", (req, res) =>{
-    return res.json({mensagem: "Pneu furou? Meu pau é um anzol"})
+server.get("/tarefa", (req, res) =>{
+    return res.json(tarefa)
 })
 
-server.get("/alunos", (req, res)=>{
-    return res.json(alunos)
+server.get("/usuario", (req, res)=>{
+    return res.json(usuario)
 })
 
 server.listen(3300, ()=> {

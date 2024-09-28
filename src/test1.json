@@ -1,0 +1,13 @@
+[
+    {
+        "id": "1",
+        "nome": "Juan",
+        "idade": 999
+    },
+    {
+        "id": "2",
+        "nome": "Luan",
+        "idade": 1
+    }
+]
+// git add . git commit -m "nome_qualquer" git push
