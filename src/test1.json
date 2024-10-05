@@ -1,13 +1,11 @@
 [
     {
         "id": "1",
-        "nome": "Juan",
-        "idade": 999
+        "nome": "Ganhar a Série B",
+        "dt_exp": "14/11/24"
     },
     {
         "id": "2",
-        "nome": "Luan",
-        "idade": 1
-    }
-]
-// git add . git commit -m "nome_qualquer" git push
+        "nome": "Humilhar o Flamengo De novo no Campeonato Carioca (kkkkkkk muito ruim)",
+        "dt_exp": "22/12/24"
+    }]

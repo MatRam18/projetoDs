@@ -1,7 +1,8 @@
 const express = require('express')
 const server = express()
 const usuario = require("./src/teste.json")
-const tarefa = require("./src/teste1.json")
+const tarefa = require("./src/test1.json")
+
 server.get("/", (req, res) =>{
     return res.json({mensagem: "Hello Node"})
 })
