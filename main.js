@@ -3,7 +3,7 @@ const { Sequelize, DataTypes } = require("sequelize");
 
 //### Configuração do Express e do Banco de Dados ###
 const rotas = express();
-const sequelize = new Sequelize("events", "root", "", {
+const sequelize = new Sequelize("tasks", "root", "", {
   host: "localhost",
   dialect: "mysql",
 });
@@ -37,7 +37,7 @@ const Tarefa = sequelize.define("tarefa", {
   nome: { type: DataTypes.STRING },
   descricao: { type: DataTypes.TEXT },
   data: { type: DataTypes.DATE },
-  responsaveis: { type: DataTypes.STRING }, // Consider making this a foreign key reference to Usuario
+  responsaveis: { type: DataTypes.STRING }, 
   setor: { type: DataTypes.STRING },
   relatorioId: {
       type: DataTypes.INTEGER,
@@ -172,6 +172,54 @@ rotas.get("/deletarEvent/:id", async function (req, res) {
     } else {
       res.status(404).json({ mensagem: "Relatorio não encontrado" });
     }
+  });
+
+  rotas.get("/editarProf/:id/:nome/:email/:senha", async function (req, res) {
+    const { id, nome, email,senha } = req.params;
+    const idNumber = parseInt(id, 10); // Converte o ID para número
+  
+    const [updated] = await Professor.update(
+      { nome, email, senha },
+      {
+        where: { id: idNumber }, // Usa o ID numérico
+      }
+    );
+  
+    res.json({
+      mensagem: "Professor atualizado com sucesso",
+    });
+  });
+
+  rotas.get("/editarEvent/:id/:nome/:data/:desc/:local/:horario", async function (req, res) {
+    const { id, nome, data, desc, local, horario } = req.params;
+    const idNumber = parseInt(id, 10); // Converte o ID para número
+  
+    const [updated] = await Evento.update(
+      { nome, data, desc, local, horario },
+      {
+        where: { id: idNumber }, // Usa o ID numérico
+      }
+    );
+  
+    res.json({
+      mensagem: "Evento atualizado com sucesso",
+    });
+  });
+
+  rotas.get("/editarRela/:id/:data/:desc/:finalidade", async function (req, res) {
+    const { id, data, desc, finalidade } = req.params;
+    const idNumber = parseInt(id, 10); // Converte o ID para número
+  
+    const [updated] = await Relatorio.update(
+      { data, desc, finalidade },
+      {
+        where: { id: idNumber }, // Usa o ID numérico
+      }
+    );
+  
+    res.json({
+      mensagem: "Relatorio atualizado com sucesso",
+    });
   });
 
 //### Servidor ###
