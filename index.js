@@ -1,20 +1,36 @@
-const express = require('express')
-const server = express()
-const usuario = require("./src/teste.json")
-const tarefa = require("./src/test1.json")
+const express = require("express");
+const server = express();
+const { create } = require("express-handlebars");
+const Sequelize = require("sequelize");
 
-server.get("/", (req, res) =>{
-    return res.json({mensagem: "Hello Node"})
-})
+const conexaoComBanco = new Sequelize("events", "root", "", {
+    host: "localhost",
+    dialect: "mysql",
+});
 
-server.get("/tarefa", (req, res) =>{
-    return res.json(tarefa)
-})
+server.get("/Usuario/:nome/:cpf/:setor/:email/:senha", function (req, res) {
+    res.send(req.params);
+});
 
-server.get("/usuario", (req, res)=>{
-    return res.json(usuario)
-})
+server.get("/Tarefa/:nome/:desc/:data/:responsaveis/:setor", function (req, res) {
+    res.send(req.params);
+});
 
-server.listen(3300, ()=> {
-    console.log('server ON')
-})
+server.get("/relatorio/:finalidade/:data/:desc/:componentes", function (req, res) {
+    res.send(req.params);
+});
+
+
+server.get("/cad", function (req, res) {
+    res.render("form");
+});
+
+
+const abs = create({ defaultLayout: "main" });
+server.engine("handlebars", abs.engine);
+server.set("view engine", "handlebars");
+
+
+server.listen(3030, () => {
+    console.log("Servidor on");
+});
