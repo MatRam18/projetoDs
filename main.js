@@ -1,8 +1,11 @@
 const express = require("express");
 const { Sequelize, DataTypes } = require("sequelize");
+const cors = require("cors");
+
 
 //### Configuração do Express e do Banco de Dados ###
 const rotas = express();
+rotas.use(cors());      
 const sequelize = new Sequelize("tasks", "root", "", {
   host: "localhost",
   dialect: "mysql",
@@ -114,7 +117,7 @@ rotas.get("/evento/:nome/:data/:desc/:local/:horario", async function (req, res)
   }
 });
 
-rotas.get("/mostrarEvent", async function (req, res) {
+rotas.get("/mostrarTask", async function (req, res) {
     const evento = await Tarefa.findAll(); // Busca todos os registros
     res.json(evento); // Retorna os registros em formato JSON
 });
@@ -190,7 +193,7 @@ rotas.get("/deletarEvent/:id", async function (req, res) {
     });
   });
 
-  rotas.get("/editarEvent/:id/:nome/:data/:desc/:local/:horario", async function (req, res) {
+  rotas.get("/editarTask/:id/:nome/:data/:desc/:local/:horario", async function (req, res) {
     const { id, nome, data, desc, local, horario } = req.params;
     const idNumber = parseInt(id, 10); // Converte o ID para número
   
