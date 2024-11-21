@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios e Tarefas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section>
+        <table class="tabPrincipal">
+            <tr>
+                <th class="thTittle">
+                    <h3 id="taskTittle" class="taskTittle">Título</h3>
+                </th>
+                <th>
+                    <table>
+                        <tr>
+                            <th id="taskSetor" class="tInfoSetor">Seto/tarefas</th>
+                            <th id="taskDate" class="tInfoData">Data</th>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <th>
+                                <h4 id="taskRes" class="taskRes">Responsáveis/componentes</h4>
+                            </th>
+                        </tr>
+                    </table>
+                </th>
+            </tr>
+        </table>
+        <h4 id="taskDesc">Descrição</h4>
+    </section>
+
+    <article>
+        <h3>Relatórios</h3>
+        <ul id="finalidadeList"></ul>
+    </article>
+
+    <aside>
+        <h1 class="list">Lista de Tarefas</h1>
+        <table id="taskName" class="tabTasks">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </aside>
+    <div class="menu">
+        <table class="tMenu">
+            <tr>
+                <th>
+                    <form action="">
+                        <input type="submit" value="" class="button"/>
+                    </form>
+                </th>
+                <th>
+                    <form action="../update/menuAtualizar.html">
+                        <input type="submit" value="ATUALIZAR" class="button"/>
+                    </form>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <form action="../create/menuCriar.html">
+                        <input type="submit" value="CRIAR" class="button"/>
+                    </form>
+                </th>
+                <th>
+                    <form action="../delete/menuApagar.html">
+                        <input type="submit" value="APAGAR" class="button"/>
+                    </form>
+                </th>
+            </tr>
+        </table>
+      </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

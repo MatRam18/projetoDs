@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu de Criação</title>
+    <link rel="stylesheet" href="styleCt.css">
+</head>
+<body>
+    <section>
+      <h2 class="tituloPrincipal">Criação de Tarefa e Relatórios</h2>        
+          <table class="tabTitulo">
+            <tr>
+              <th class="thTitulo">
+                  <h4 class="textTitulo">Cadastrar Tarefa</h4>
+              </th>
+            </tr>
+          </table>
+            <!-- Formulário para Cadastro de Evento -->
+            <div class="areaTarefa">
+                <!-- Feedback de Sucesso ou Erro para Evento -->
+                <form id="formTarefa">
+                  <table>
+                    <tr>
+                      <th>
+                        <label for="nomeTarefa">Nome da Tarefa</label>
+                        <input type="text" class="form-control" id="nomeTarefa" required>
+                      </th>
+                      <th>
+                        <label for="dataTarefa">Data da Tarefa</label>
+                        <input type="date" class="form-control" id="dataEvento" required>
+                      </th>
+                    </tr>
+                    <tr>
+                      <th>
+                        <label for="descricaoTarefa">Descrição</label>
+                        <textarea class="form-control" id="descricaoEvento" required></textarea>
+                      </th>
+                      <th>
+                        <label for="setorTarefa">Setor</label>
+                        <input type="text" class="form-control" id="setorTarefa" required>
+                      </th>
+                    </tr>
+                    <tr>
+                      <th>
+                        <label for="responsaveisTarefa">Responsaveis</label>
+                        <input type="text" class="form-control" id="responsaveisTarefa" required>
+                      </th>
+                      <th>
+                        <button type="submit" class="confirmar">Cadastrar Evento</button> 
+                        <!-- btn btn-success -->
+                      </th>
+                    </tr>
+                  </table>
+                </form>
+              </div>
+        
+            <!-- Formulário para Cadastro de Relatório -->
+            <div class="areaRelario">
+              <table class="tabTitulo">
+                <tr>
+                  <th class="thTitulo">
+                      <h4 class="textTitulo">Cadastrar Tarefa</h4>
+                  </th>
+                </tr>
+              </table>
+
+                <!-- Feedback de Sucesso ou Erro para Relatório -->
+                <div id="feedbackRelatorio" style="display: none;" class="alert"></div>
+              
+                <form id="formRelatorio">
+                  <table>
+                    <tr>
+                      <th>
+                        <label for="nomeTarefa">Nome da Tarefa</label>
+                        <input type="text" class="form-control" id="finalidade" required>
+                      </th>
+                      <th>
+                        <label for="finalidade">Finalidade</label>
+                        <input type="text" class="form-control" id="finalidade" required>
+                      </th>
+                    </tr>
+                    <tr>
+                      <th>
+                        <label for="dataTarefa">Data do Relatório</label>
+                        <input type="date" class="form-control" id="dataRelatorio" required>
+                      </th>
+                      <th>
+                        <label for="descricaoRelatorio">Descrição</label>
+                        <textarea class="form-control" id="descricaoRelatorio" required></textarea>
+                      </th>
+                    </tr>
+                    <tr>
+                      <th>
+                        <label for="tipoRelatorio">Componentes</label>
+                        <input type="text" class="form-control" id="componente" required>
+                      </th>
+                      <th>
+                        <button type="submit" class="confirmar">Cadastrar Relatório</button>
+                        <!-- btn btn-info -->
+                      </th>
+                    </tr>
+                  </table>
+                </form>
+              </div>
+            </div>
+          </div>
+    </section>
+    <div class="menu">
+      <table class="tMenu">
+          <tr>
+              <th>
+                  <form action="../read/index.html">
+                      <input type="submit" value="MENU" class="button"/>
+                  </form>
+              </th>
+              <th>
+                  <form action="../update/menuAtualizar.html">
+                      <input type="submit" value="ATUALIZAR" class="button"/>
+                  </form>
+              </th>
+          </tr>
+          <tr>
+              <th>
+                  <form action="">
+                      <input type="submit" value="" class="button"/>
+                  </form>
+              </th>
+              <th>
+                  <form action="../delete/menuApagar.html">
+                      <input type="submit" value="APAGAR" class="button"/>
+                  </form>
+              </th>
+          </tr>
+      </table>
+    </div>
+    <script src="mainR.js"></script>
+</body>
+</html>

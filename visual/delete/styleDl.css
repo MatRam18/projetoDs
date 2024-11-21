@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: rgb(124, 41, 41);
+}
+
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 4px;
+    text-align: left;
+}
+
+table, th, td {
+    border: 2px solid;
+    border-style: solid;
+    table-layout: fixed;
+}
+.button{
+    width: 19.5vh;
+    height: 5vh;
+}
+.button2{
+    width: 80vh;
+    height: 40vh;
+}
+
+.tMenu{
+    width: 100%;
+    height: 17vh;
+}
+.tMenu2{
+    width: 100%;
+    height: 100%;
+}
+
+
+/* divs */
+section {
+    background-color: #f1f1f1;
+    width: 39.8%; 
+    height: 90%; 
+    position: fixed;
+    top: 5%;
+    left: 30%;
+    border: 5px;
+    border-style: solid;
+}
+
+
+.menu{
+    background-color: #f1f1f1;
+    width: 21%; 
+    height: 17%; 
+    position: fixed;
+    top: 78%;
+    right: 5%;
+    border-style: solid;
+}

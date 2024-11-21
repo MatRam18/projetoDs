@@ -1,0 +1,178 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: rgb(124, 41, 41);
+}
+
+.list {
+    text-align: center;
+}
+
+.taskTittle {
+    margin-bottom: 10%;
+    padding-left: 10vh;
+}
+
+.tabTasks {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.tabPrincipal {
+    width: 100%;
+    height: 3%;
+    border-collapse: collapse;
+    margin-left: -2PX;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 4px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+table, th, td {
+    border: 2px solid;
+    border-style: solid;
+    table-layout: fixed;
+}
+
+.button{
+    width: 19.5vh;
+    height: 5vh;
+}
+
+.thTittle{
+    width: 60%;
+}
+
+.relatorioLista{
+    width: 40vh;
+    font-size: 15px;
+}
+
+.tInfoSetor{
+    width: 50vh;
+}
+
+.tMenu{
+    width: 100%;
+    height: 17vh;
+}
+
+.taskRes{
+    text-align: center;
+    width:49.4vh;
+    word-wrap: break-word;
+}
+
+/* Scrollable areas for the lists */
+#finalidadeList {
+    max-height: 300px;  /* Ajuste conforme necessário */
+    overflow-y: auto;   /* Permite a rolagem vertical */
+}
+
+#taskName tbody {
+    max-height: 300px;  /* Ajuste conforme necessário */
+    overflow-y: auto;   /* Permite a rolagem vertical */
+}
+
+/* divs */
+section {
+    background-color: #f1f1f1;
+    width: 66%; 
+    height: 90%; 
+    position: fixed;
+    top: 5%;
+    left: 5%;
+    border: 5px;
+    border-style: solid;
+}
+
+article{
+    background-color: #f1f1f1;
+    width: 15%; 
+    height: 20%; 
+    position: fixed;
+    top: 75%;
+    left: 11vh;
+    border-style: solid;
+}
+
+aside{
+    background-color: #f1f1f1;
+    width: 21%; 
+    height: 70%; 
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    border-style: solid;
+}
+
+.menu{
+    background-color: #f1f1f1;
+    width: 21%; 
+    height: 17%; 
+    position: fixed;
+    top: 78%;
+    right: 5%;
+    border-style: solid;
+}
+
+#taskName tbody tr:hover {
+    background-color: #f0f0f0;  /* Cor de fundo ao passar o mouse */
+    cursor: pointer;           /* Cursor em forma de mãozinha */
+}
+
+#taskName tbody tr:hover td {
+    color: #ca1a1a;  /* Cor do texto ao passar o mouse (pode ser azul ou qualquer cor) */
+}
+
+
+
+#finalidadeList tr:hover {
+    background-color: #f0f0f0;  /* Cor de fundo ao passar o mouse */
+    cursor: pointer;           /* Cursor em forma de mãozinha */
+}
+
+#finalidadeList tr:hover td {
+    color: #ca1a1a;  /* Cor do texto ao passar o mouse */
+}
+
+/* Para permitir rolar a lista de relatórios */
+#finalidadeList {
+    max-height: 300px;  /* Ajuste conforme necessário */
+    overflow-y: auto;   /* Permite a rolagem vertical */
+    padding-left: 0;     /* Remove o padding à esquerda */
+    margin-left: 0;      /* Remove a margem à esquerda */
+    list-style-type: none;  /* Remove os marcadores da lista */
+    width: 100%;         /* A lista ocupa toda a largura do contêiner */
+}
+
+#finalidadeList tr {
+    padding-left: 0;     /* Remove qualquer padding extra */
+    margin-left: 0;      /* Remove qualquer margem extra */
+}
+
+#finalidadeList li {
+    padding: 10px;  /* Ajuste o padding conforme necessário */
+    border-bottom: 1px solid #ddd; /* Adiciona uma linha de separação entre os itens */
+}
+
+#finalidadeList li:hover {
+    background-color: #f0f0f0;  /* Cor de fundo ao passar o mouse */
+    cursor: pointer;            /* Cursor em forma de mãozinha */
+}
+
+#finalidadeList li:hover {
+    color: #ca1a1a;  /* Cor do texto ao passar o mouse */
+}
