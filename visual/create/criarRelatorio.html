@@ -9,58 +9,11 @@
 <body>
     <section>
       <h2 class="tituloPrincipal">Criação de Tarefa e Relatórios</h2>        
-          <table class="tabTitulo">
-            <tr>
-              <th class="thTitulo">
-                  <h4 class="textTitulo">Cadastrar Tarefa</h4>
-              </th>
-            </tr>
-          </table>
-            <!-- Formulário para Cadastro de Evento -->
-            <div class="areaTarefa">
-                <!-- Feedback de Sucesso ou Erro para Evento -->
-                <form id="formTarefa">
-                  <table>
-                    <tr>
-                      <th>
-                        <label for="nomeTarefa">Nome da Tarefa</label>
-                        <input type="text" class="form-control" id="nomeTarefa" required>
-                      </th>
-                      <th>
-                        <label for="dataTarefa">Data da Tarefa</label>
-                        <input type="date" class="form-control" id="dataEvento" required>
-                      </th>
-                    </tr>
-                    <tr>
-                      <th>
-                        <label for="descricaoTarefa">Descrição</label>
-                        <textarea class="form-control" id="descricaoEvento" required></textarea>
-                      </th>
-                      <th>
-                        <label for="setorTarefa">Setor</label>
-                        <input type="text" class="form-control" id="setorTarefa" required>
-                      </th>
-                    </tr>
-                    <tr>
-                      <th>
-                        <label for="responsaveisTarefa">Responsaveis</label>
-                        <input type="text" class="form-control" id="responsaveisTarefa" required>
-                      </th>
-                      <th>
-                        <button type="submit" class="confirmar">Cadastrar Evento</button> 
-                        <!-- btn btn-success -->
-                      </th>
-                    </tr>
-                  </table>
-                </form>
-              </div>
-        
-            <!-- Formulário para Cadastro de Relatório -->
             <div class="areaRelario">
               <table class="tabTitulo">
                 <tr>
                   <th class="thTitulo">
-                      <h4 class="textTitulo">Cadastrar Tarefa</h4>
+                      <h4 class="textTitulo">Cadastrar Relatório</h4>
                   </th>
                 </tr>
               </table>
@@ -71,9 +24,12 @@
                 <form id="formRelatorio">
                   <table>
                     <tr>
+                      <!-- Caixa de Seleção para Tarefa -->
                       <th>
                         <label for="nomeTarefa">Nome da Tarefa</label>
-                        <input type="text" class="form-control" id="finalidade" required>
+                        <select class="form-control" id="tarefa" required>
+                          <!-- As opções serão preenchidas dinamicamente aqui -->
+                        </select>
                       </th>
                       <th>
                         <label for="finalidade">Finalidade</label>

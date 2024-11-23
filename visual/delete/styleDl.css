@@ -57,3 +57,22 @@ section {
     right: 5%;
     border-style: solid;
 }
+
+.form-control{
+    width: 38vh;
+}
+.confirmar{
+    width: 39vh;
+    height: 6vh;
+}
+.tabTitulo{
+    width: 100%;
+    margin-bottom: -10px;
+}
+.thTitulo{
+    margin-bottom: -500px;
+}
+
+.textTitulo{
+    text-align: center;
+}
