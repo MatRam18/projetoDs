@@ -3,40 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu de Eliminação</title>
+    <title>Eliminar relatório</title>
     <link rel="stylesheet" href="styleDl.css">
 </head>
 <body>
     <section>
-        <table class="tMenu2">
+        <table>
             <tr>
                 <th>
-                    <center>
-                        <form action="" >
-                            <input type="submit" value="APAGAR TAREFA" class="button2"/>
-                        </form>
-                    </center>
+                    <label for="nomeTarefa">Nome da Tarefa</label>
+                    <select class="form-control" id="tarefa" required>
+                        <!-- As opções serão preenchidas dinamicamente aqui -->
+                    </select>
+                </th>
+                <th>
+                    <button type="submit" class="confirmar">Apagar Tarefa</button>
                 </th>
             </tr>
             <tr>
-                <th>
-                    <center>
-                        <form action="" >
-                            <input type="submit" value="APAGAR RELATÓRIO" class="button2"/>
-                        </form>
-                    </center>
+                <th id="lista">
+
                 </th>
-            </tr>
-            <tr>
-                <th>
-                    <center>
-                        <form action="" >
-                            <input type="submit" value="APAGAR USUARIO" class="button2"/>
-                        </form>
-                    </center>
+                <th id="certeza">
+
                 </th>
             </tr>
         </table>
+        
+      
     </section>
     <div class="menu">
         <table class="tMenu">

@@ -11,26 +11,28 @@
         <table>
             <tr>
                 <th>
-                    <label for="nomeTarefa">Nome da Tarefa</label>
-                    <select class="form-control" id="tarefa" required>
+                    <label for="tarefa">Nome da Tarefa</label>
+                    <select class="form-control" id="tarefa" required onchange="exibirDetalhes()">
                         <!-- As opções serão preenchidas dinamicamente aqui -->
                     </select>
                 </th>
                 <th>
-                    <button type="submit" class="confirmar">Apagar Tarefa</button>
+                    <button type="submit" class="confirmar" onclick="confirmarApagar()">Apagar Tarefa</button>
                 </th>
             </tr>
             <tr>
                 <th id="lista">
-
+                    <h3 id="nomeT">Nome:</h3>
+                    <h3 id="setorT">Setor:</h3>
+                    <h3 id="dataT">Data:</h3>
+                    <h3 id="respT">Responsaveis:</h3>
+                    <h3 id="descT">Descrição:</h3>
                 </th>
                 <th id="certeza">
-
+                    <!-- A confirmação será exibida aqui -->
                 </th>
             </tr>
         </table>
-        
-      
     </section>
     <div class="menu">
         <table class="tMenu">
@@ -59,7 +61,7 @@
                 </th>
             </tr>
         </table>
-      </div>
-    <!-- <script src="main.js"></script> -->
+    </div>
+    <script src="mainT.js"></script>
 </body>
 </html>
