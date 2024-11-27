@@ -5,8 +5,14 @@ async function carregarTarefas() {
         const tarefas = await response.json();
         const selectTarefa = document.getElementById('tarefa');
         
-        // Limpa as opções existentes
+        // Limpa as opções existentes, incluindo a opção 'Nenhuma tarefa'
         selectTarefa.innerHTML = '';
+
+        // Adiciona a opção 'Nenhuma tarefa' de volta ao início
+        const optionNone = document.createElement('option');
+        optionNone.value = '';
+        optionNone.textContent = 'Nenhuma tarefa';
+        selectTarefa.appendChild(optionNone);
 
         // Preenche o select com as tarefas
         tarefas.forEach(tarefa => {
@@ -21,38 +27,46 @@ async function carregarTarefas() {
 }
 
 // Função para exibir os detalhes da tarefa selecionada
+// Função para exibir os detalhes da tarefa selecionada
 async function exibirDetalhes() {
     const tarefaId = document.getElementById('tarefa').value;
 
-    if (!tarefaId) return;  // Se não houver seleção, não faz nada
+    if (!tarefaId) {
+        // Se a opção 'Nenhuma tarefa' for selecionada, apenas mostra os textos padrões
+        document.getElementById('nomeT').textContent = 'Nome:';
+        document.getElementById('setorT').textContent = 'Setor:';
+        document.getElementById('dataT').textContent = 'Data:';
+        document.getElementById('respT').textContent = 'Responsáveis:';
+        document.getElementById('descT').textContent = 'Descrição:';
+        return; 
+    }
 
     try {
         // Chama a API para buscar os detalhes da tarefa
         const response = await fetch(`http://localhost:3031/tarefas`);
-        const tarefa = await response.json();
+        const tarefas = await response.json();
 
-        // Verifica se a resposta foi bem-sucedida
         if (response.ok) {
-            // Atualiza os campos com os detalhes da tarefa
-            tarefa.forEach(tarefas => {
-                const tarefaId = document.getElementById('tarefa').value;
-                if (tarefaId.value === tarefas.id){
-                document.getElementById('nomeT').textContent = `Nome: ${tarefas.nome}`;
-                document.getElementById('setorT').textContent = `Setor: ${tarefas.setor}`;
-                document.getElementById('dataT').textContent = `Data: ${new Date(tarefas.data).toLocaleDateString()}`;
-                document.getElementById('respT').textContent = `Responsáveis: ${tarefas.responsaveis}`;
-                document.getElementById('descT').textContent = `Descrição: ${tarefas.descricao}`;
-            }})
-            
+            // Filtra a tarefa selecionada
+            const tarefaSelecionada = tarefas.find(tarefa => tarefa.id == tarefaId);
+
+            if (tarefaSelecionada) {
+                // Atualiza os campos com os detalhes da tarefa
+                document.getElementById('nomeT').textContent = `Nome: ${tarefaSelecionada.nome}`;
+                document.getElementById('setorT').textContent = `Setor: ${tarefaSelecionada.setor}`;
+                document.getElementById('dataT').textContent = `Data: ${new Date(tarefaSelecionada.data).toLocaleDateString()}`;
+                document.getElementById('respT').textContent = `Responsáveis: ${tarefaSelecionada.responsaveis}`;
+                document.getElementById('descT').textContent = `Descrição: ${tarefaSelecionada.descricao}`;
+            } else {
+                alert('Tarefa não encontrada!');
+            }
         } else {
-            // Se não encontrar a tarefa, exibe um erro
-            alert('Tarefa não encontrada!');
+            alert('Erro ao buscar tarefas!');
         }
     } catch (error) {
         console.error('Erro ao exibir os detalhes da tarefa:', error);
     }
 }
-
 
 // Função para mostrar a confirmação de exclusão
 function confirmarApagar() {
@@ -61,7 +75,7 @@ function confirmarApagar() {
     if (!tarefaId) return;
 
     const certeza = document.getElementById('certeza');
-    certeza.innerHTML = `
+    certeza.innerHTML = ` 
         <p>Você tem certeza de que quer apagar essa tarefa?</p>
         <button class="confirmar" onclick="apagarTarefa(${tarefaId})">Confirmar</button>
     `;
@@ -88,5 +102,17 @@ async function apagarTarefa(tarefaId) {
     }
 }
 
+// Função que será chamada quando a seleção de tarefa mudar
+function limparConfirmacao() {
+    // Remove a mensagem de confirmação caso o usuário mude a seleção da tarefa
+    const certeza = document.getElementById('certeza');
+    certeza.innerHTML = '';
+}
+
 // Chama a função para carregar as tarefas quando a página for carregada
-window.onload = carregarTarefas;
+window.onload = () => {
+    carregarTarefas();
+
+    // Adiciona um ouvinte para o evento de mudança de seleção no <select> 
+    document.getElementById('tarefa').addEventListener('change', limparConfirmacao);
+};

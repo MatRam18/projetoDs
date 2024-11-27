@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar relatório</title>
+    <title>Eliminar Relatório</title>
     <link rel="stylesheet" href="styleDl.css">
 </head>
 <body>
@@ -11,27 +11,31 @@
         <table>
             <tr>
                 <th>
-                    <label for="nomeTarefa">Nome da Tarefa</label>
-                    <select class="form-control" id="tarefa" required>
-                        <!-- As opções serão preenchidas dinamicamente aqui -->
+                    <label for="relatorio">Nome do Relatório</label>
+                    <!-- Modificado para usar "relatório" em vez de "tarefa" -->
+                    <select class="form-control" id="relatorio" required onchange="exibirDetalhes()">
+                        <option value="">Nenhum relatório</option> <!-- Nova opção para indicar 'nenhum relatório' -->
                     </select>
                 </th>
                 <th>
-                    <button type="submit" class="confirmar">Apagar Tarefa</button>
+                    <button type="submit" class="confirmar" onclick="confirmarApagar()">Apagar Relatório</button>
                 </th>
             </tr>
             <tr>
                 <th id="lista">
-
+                    <h3 id="finalidadeR">Finalidade:</h3>
+                    <h3 id="dataR">Data:</h3>
+                    <h3 id="descricaoR">Descrição:</h3>
+                    <h3 id="componentesR">Componentes:</h3>
+                    <h3 id="tarefaR">Tarefa Relacionada:</h3>
                 </th>
                 <th id="certeza">
-
+                    <!-- A confirmação será exibida aqui -->
                 </th>
             </tr>
         </table>
-        
-      
     </section>
+
     <div class="menu">
         <table class="tMenu">
             <tr>
@@ -59,7 +63,8 @@
                 </th>
             </tr>
         </table>
-      </div>
-    <!-- <script src="main.js"></script> -->
+    </div>
+
+    <script src="mainR.js"></script>
 </body>
 </html>

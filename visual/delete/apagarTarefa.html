@@ -12,9 +12,11 @@
             <tr>
                 <th>
                     <label for="tarefa">Nome da Tarefa</label>
+                    <!-- Seu HTML permanece praticamente o mesmo, mas com a modificação no select -->
                     <select class="form-control" id="tarefa" required onchange="exibirDetalhes()">
-                        <!-- As opções serão preenchidas dinamicamente aqui -->
+                        <option value="">Nenhuma tarefa</option> <!-- Nova opção para indicar 'nenhuma tarefa' -->
                     </select>
+
                 </th>
                 <th>
                     <button type="submit" class="confirmar" onclick="confirmarApagar()">Apagar Tarefa</button>
