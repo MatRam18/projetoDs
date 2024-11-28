@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 14/11/2024 às 08:10
+-- Tempo de geração: 28/11/2024 às 17:18
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -82,10 +82,10 @@ INSERT INTO `tarefas` (`id`, `nome`, `descricao`, `data`, `responsaveis`, `setor
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nome` varchar(255) DEFAULT NULL,
-  `cpf` varchar(255) DEFAULT NULL,
+  `cpf` int(11) NOT NULL,
   `setor` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `senha` varchar(255) DEFAULT NULL,
+  `senha` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -95,10 +95,10 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `cpf`, `setor`, `email`, `senha`, `createdAt`, `updatedAt`) VALUES
-(1, 'Ana Souza', '123.456.789-00', 'TI', 'ana.souza@example.com', 'senhaAna123', '2024-10-25 00:43:32', '2024-10-25 00:43:32'),
-(2, 'Pedro Almeida', '987.654.321-00', 'Administração', 'pedro.almeida@example.com', 'senhaPedro456', '2024-10-25 00:43:32', '2024-10-25 00:43:32'),
-(3, 'Maria Fernanda', '555.444.333-22', 'Recursos Humanos', 'maria.fernanda@example.com', 'senhaMaria789', '2024-10-25 00:43:32', '2024-10-25 00:43:32'),
-(4, 'João Batista', '111.222.333-44', 'Financeiro', 'joao.batista@example.com', 'senhaJoao012', '2024-10-25 00:43:32', '2024-10-25 00:43:32');
+(1, 'Ana Souza', 123, 'TI', 'ana.souza@example.com', 'senhaAna123', '2024-10-25 00:43:32', '2024-10-25 00:43:32'),
+(2, 'Pedro Almeida', 987, 'Administração', 'pedro.almeida@example.com', 'senhaPedro456', '2024-10-25 00:43:32', '2024-10-25 00:43:32'),
+(3, 'Maria Fernanda', 555, 'Recursos Humanos', 'maria.fernanda@example.com', 'senhaMaria789', '2024-10-25 00:43:32', '2024-10-25 00:43:32'),
+(4, 'João Batista', 111, 'Financeiro', 'joao.batista@example.com', 'senhaJoao012', '2024-10-25 00:43:32', '2024-10-25 00:43:32');
 
 --
 -- Índices para tabelas despejadas
@@ -133,13 +133,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `relatorios`
 --
 ALTER TABLE `relatorios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `tarefas`
 --
 ALTER TABLE `tarefas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`

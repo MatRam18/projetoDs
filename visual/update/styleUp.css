@@ -27,6 +27,21 @@ table, th, td {
     width: 200px;
 }
 
+.tabTasks {
+    width: 100%;
+    height: 50vh;
+    border-collapse: collapse;
+    margin: 5px 0;
+    text-align: left;
+}
+.list {
+    text-align: center;
+}
+
+.desc{
+    height: 35vh;
+}
+
 .button {
     width: 100%;  /* Faz os botões dentro da .bota ocuparem toda a largura */
     height: 5vh;
@@ -51,12 +66,25 @@ table, th, td {
 section {
     background-color: #f1f1f1;
     width: 49.8%; 
-    height: 60%; 
+    /* height: 60%;  */
+    height: 80%; 
     position: fixed;
     top: 10%;
     left: 20%;
     border: 5px solid;
     overflow: hidden; /* Garante que nada ultrapasse os limites da section */
+}
+
+aside {
+    background-color: #f1f1f1;
+    width: 19%; 
+    height: 60%;  /* Limita a altura do aside */
+    position: fixed;
+    top: 10%;
+    right: 5%;
+    border-style: solid;
+    overflow-y: auto;  /* Permite o scroll se o conteúdo exceder a altura */
+    padding: 1%;     /* Adiciona um pouco de espaçamento interno */
 }
 
 

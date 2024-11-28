@@ -12,78 +12,88 @@
             <tr>
                 <th>
                     <label for="relatorio">Nome do Relatório</label>
-                    <!-- Modificado para usar "relatório" em vez de "tarefa" -->
-                    <select class="form-control-top" id="relatorio" required onchange="exibirDetalhes()">
-                        <option value="">Nenhum relatório</option> <!-- Nova opção para indicar 'nenhum relatório' -->
-                    </select>
+                    <select class="form-control-top" id="relatorio" onchange="exibirDetalhes()" required>
+                        <option value="">Selecione um Relatório</option>
+                    </select>                    
                 </th>
                 <th>
                     <h3 id="tarefaR">
                         Tarefa Relacionada:
                         <select class="form-control-top" id="tarefa" required onchange="exibirDetalhes()">
                             <option value="">Nenhuma tarefa</option>
-                        </select>
+                        </select>                        
                     </h3>
                 </th>
             </tr>
             <tr class="top">
                 <th id="lista">
                     <h3 id="finalidadeR">
-                        Finalidade:<input type="text" class="form-control" id="finalidade" required value="">
+                        Finalidade:<input type="text" class="form-control" id="finalidade" value="">
                     </h3>
                 </th>
                 <th>
                     <h3 id="dataR">
-                        Data:<input type="date" class="form-control" id="dataRelatorio" required value="">
+                        Data:<input type="date" class="form-control" id="dataRelatorio" value="">
                     </h3>
                 </th>
+            </tr>
             <tr>
-                <th>    
+                <th>
                     <h3 id="descricaoR">
-                        Descrição:<textarea class="form-control-desc" id="descricaoRelatorio" required></textarea>
+                        Descrição:<textarea class="form-control-desc" id="descricaoRelatorio"></textarea>
                     </h3>
                 </th>
                 <th>
                     <h3 id="componentesR">
-                        Componentes:<input type="text" class="form-control" id="componente" required>
+                        Componente:<input type="text" class="form-control" id="componente" value="">
                     </h3>
                 </th>
             </tr>            
             <tr>
                 <th class="bota">
-                    <button type="submit" class="confirmar" onclick="">Atualizar Relatório</button>
+                    <button type="button" class="confirmar" onclick="atualizarRelatorio()">Atualizar Relatório</button>
                 </th>
             </tr>
         </table>
     </section>
+    <aside>
+        <table id="relato">
+            <tr>
+                <td><b>Finalidade:</b></td>
+                <td id="finalidadeRelato"></td>
+            </tr>
+            <tr>
+                <td><b>Data:</b></td>
+                <td id="dataRelato"></td>
+            </tr>
+            <tr>
+                <td><b>Componente:</b></td>
+                <td id="componenteRelato"></td>
+            </tr>
+            <tr>
+                <td><b>Descrição:</b></td>
+                <td id="descricaoRelato"></td>
+            </tr>
+            <tr>
+                <td><b>Tarefa:</b></td>
+                <td id="tarefaRelato"></td>
+            </tr>
+        </table>
+        
+    </aside>
+    
     <div class="menu">
         <table class="tMenu">
             <tr>
-                <th>
-                    <form action="../read/index.html">
-                        <input type="submit" value="MENU" class="button"/>
-                    </form>
-                </th>
-                <th>
-                    <form action="../update/menuAtualizar.html">
-                        <input type="submit" value="VOLTAR" class="button"/>
-                    </form>
-                </th>
+                <th><form action="../read/index.html"><input type="submit" value="MENU" class="button"/></form></th>
+                <th><form action="../update/menuAtualizar.html"><input type="submit" value="VOLTAR" class="button"/></form></th>
             </tr>
             <tr>
-                <th>
-                    <form action="../create/menuCriar.html">
-                        <input type="submit" value="CRIAR" class="button"/>
-                    </form>
-                </th>
-                <th>
-                    <form action="../delete/menuApagar.html">
-                        <input type="submit" value="APAGAR" class="button"/>
-                    </form>
-                </th>
+                <th><form action="../create/menuCriar.html"><input type="submit" value="CRIAR" class="button"/></form></th>
+                <th><form action="../delete/menuApagar.html"><input type="submit" value="APAGAR" class="button"/></form></th>
             </tr>
         </table>
-      </div>
+    </div>
     <script src="mainR.js"></script>
 </body>
 </html>

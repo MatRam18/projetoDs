@@ -52,7 +52,7 @@ const Tarefa = sequelize.define("Tarefa", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   nome: { type: DataTypes.STRING },
   descricao: { type: DataTypes.TEXT },
-  prazo: { type: DataTypes.DATE },
+  data: { type: DataTypes.DATE },
   responsaveis: { type: DataTypes.STRING },
   setor: { type: DataTypes.STRING },
 });
@@ -208,6 +208,7 @@ rotas.put("/relatorio/:id", async (req, res) => {
   }
 });
 
+
 // Atualizar tarefa
 rotas.put("/tarefa/:id", async (req, res) => {
   const { id } = req.params;
@@ -229,5 +230,5 @@ rotas.put("/tarefa/:id", async (req, res) => {
 
 // Iniciar servidor
 rotas.listen(3031, () => {
-  console.log("servidor localhost:3031 iniciado com sucesso");
+  console.log("Servidor rodando na porta 3031");
 });
