@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
-    background-color: rgb(82, 82, 82);
+    background-color: rgb(206, 206, 206);
 }
 
 
@@ -15,13 +15,6 @@ table, th, td {
     border: 2px solid;
     border-style: solid;
     table-layout: fixed;
-    
-}
-.top {
-    border: 2px solid;
-    border-style: solid;
-    table-layout: fixed;
-    height: 100%;
 }
 .button{
     width: 19.5vh;
@@ -41,23 +34,17 @@ table, th, td {
     height: 100%;
 }
 
-#lista {
-    max-height: 96.5%; /* Ajuste para a altura desejada */
-    overflow-y: auto;  /* Permite rolagem vertical */
-    display: block;    /* Certifica-se de que o conteúdo do <th> pode ser rolado */
-}
-
 
 /* divs */
 section {
     background-color: #f1f1f1;
     width: 39.8%; 
-    height: 60%; 
+    height: 90%; 
     position: fixed;
-    top: 20%;
+    top: 5%;
     left: 30%;
-    border: 5px solid;
-    overflow: hidden; /* Garante que nada ultrapasse os limites da section */
+    border: 5px;
+    border-style: solid;
 }
 
 
@@ -76,14 +63,9 @@ section {
 .form-control{
     width: 38vh;
 }
-.form-control-desc{
-    width: 38vh;
-    height: 8vh;
-}
-
 .confirmar{
     width: 39vh;
-    height: 12vh;
+    height: 6vh;
 }
 .tabTitulo{
     width: 100%;

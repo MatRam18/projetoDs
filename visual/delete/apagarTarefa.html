@@ -8,7 +8,7 @@
 </head>
 <body>
     <section>
-        <table>
+        <table class="top">
             <tr>
                 <th>
                     <label for="tarefa">Nome da Tarefa</label>
@@ -22,11 +22,11 @@
                     <button type="submit" class="confirmar" onclick="confirmarApagar()">Apagar Tarefa</button>
                 </th>
             </tr>
-            <tr>
-                <th id="lista">
+            <tr class="top">
+                <th id="lista" class="top">
                     <h3 id="nomeT">Nome:</h3>
                     <h3 id="setorT">Setor:</h3>
-                    <h3 id="dataT">Data:</h3>
+                    <h3 id="dataT">Prazo:</h3>
                     <h3 id="respT">Responsaveis:</h3>
                     <h3 id="descT">Descrição:</h3>
                 </th>
@@ -57,8 +57,8 @@
                     </form>
                 </th>
                 <th>
-                    <form action="">
-                        <input type="submit" value="" class="button"/>
+                    <form action="../delete/menuApagar.html">
+                        <input type="submit" value="VOLTAR" class="button"/>
                     </form>
                 </th>
             </tr>

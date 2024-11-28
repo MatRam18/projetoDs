@@ -8,11 +8,11 @@
 </head>
 <body>
     <section>
-      <h2 class="tituloPrincipal">Criação de Tarefa e Relatórios</h2>        
+      <h1 class="tituloPrincipal">Cadastrar Tarefa</h1>
           <table class="tabTitulo">
             <tr>
               <th class="thTitulo">
-                  <h4 class="textTitulo">Cadastrar Tarefa</h4>
+                  <h4 class="textTitulo">Preencha os campos abaixo</h4>
               </th>
             </tr>
           </table>
@@ -27,14 +27,14 @@
                         <input type="text" class="form-control" id="nomeTarefa" required>
                       </th>
                       <th>
-                        <label for="dataTarefa">Data da Tarefa</label>
+                        <label for="dataTarefa">Prazo de Entrega</label>
                         <input type="date" class="form-control" id="dataEvento" required>
                       </th>
                     </tr>
                     <tr>
                       <th>
-                        <label for="descricaoTarefa">Descrição</label>
-                        <textarea class="form-control" id="descricaoEvento" required></textarea>
+                        <label for="responsaveisTarefa">Responsaveis</label>
+                        <input type="text" class="form-control" id="responsaveisTarefa" required>
                       </th>
                       <th>
                         <label for="setorTarefa">Setor</label>
@@ -43,8 +43,8 @@
                     </tr>
                     <tr>
                       <th>
-                        <label for="responsaveisTarefa">Responsaveis</label>
-                        <input type="text" class="form-control" id="responsaveisTarefa" required>
+                        <label for="descricaoTarefa">Descrição</label>
+                        <textarea class="form-control-desc" id="descricaoEvento" required></textarea>
                       </th>
                       <th>
                         <button type="submit" class="confirmar">Cadastrar Evento</button> 
@@ -73,8 +73,8 @@
           </tr>
           <tr>
               <th>
-                  <form action="">
-                      <input type="submit" value="" class="button"/>
+                  <form action="../create/menuCriar.html">
+                      <input type="submit" value="VOLTAR" class="button"/>
                   </form>
               </th>
               <th>

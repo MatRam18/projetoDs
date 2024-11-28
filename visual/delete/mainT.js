@@ -35,7 +35,7 @@ async function exibirDetalhes() {
         // Se a opção 'Nenhuma tarefa' for selecionada, apenas mostra os textos padrões
         document.getElementById('nomeT').textContent = 'Nome:';
         document.getElementById('setorT').textContent = 'Setor:';
-        document.getElementById('dataT').textContent = 'Data:';
+        document.getElementById('dataT').textContent = 'Prazo:';
         document.getElementById('respT').textContent = 'Responsáveis:';
         document.getElementById('descT').textContent = 'Descrição:';
         return; 
@@ -54,7 +54,7 @@ async function exibirDetalhes() {
                 // Atualiza os campos com os detalhes da tarefa
                 document.getElementById('nomeT').textContent = `Nome: ${tarefaSelecionada.nome}`;
                 document.getElementById('setorT').textContent = `Setor: ${tarefaSelecionada.setor}`;
-                document.getElementById('dataT').textContent = `Data: ${new Date(tarefaSelecionada.data).toLocaleDateString()}`;
+                document.getElementById('dataT').textContent = `Prazo: ${new Date(tarefaSelecionada.data).toLocaleDateString()}`;
                 document.getElementById('respT').textContent = `Responsáveis: ${tarefaSelecionada.responsaveis}`;
                 document.getElementById('descT').textContent = `Descrição: ${tarefaSelecionada.descricao}`;
             } else {

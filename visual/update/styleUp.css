@@ -1,14 +1,13 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
-    background-color: rgb(124, 41, 41);
+    background-color: rgb(161, 161, 161);
 }
 
 
-th, td {
-    border: 1px solid #ddd;
+th, td, select, input, textarea {
+    text-align: left; /* Alinha todos os elementos de texto à esquerda */
     padding: 4px;
-    text-align: left;
 }
 
 table, th, td {
@@ -16,9 +15,22 @@ table, th, td {
     border-style: solid;
     table-layout: fixed;
 }
-.button{
-    width: 19.5vh;
+.top {
+    border: 2px solid;
+    border-style: solid;
+    table-layout: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+.bota {
+    width: 200px;
+}
+
+.button {
+    width: 100%;  /* Faz os botões dentro da .bota ocuparem toda a largura */
     height: 5vh;
+    text-align: center;
 }
 .button2{
     width: 80vh;
@@ -38,13 +50,13 @@ table, th, td {
 /* divs */
 section {
     background-color: #f1f1f1;
-    width: 39.8%; 
-    height: 90%; 
+    width: 49.8%; 
+    height: 60%; 
     position: fixed;
-    top: 5%;
-    left: 30%;
-    border: 5px;
-    border-style: solid;
+    top: 10%;
+    left: 20%;
+    border: 5px solid;
+    overflow: hidden; /* Garante que nada ultrapasse os limites da section */
 }
 
 
@@ -56,4 +68,46 @@ section {
     top: 78%;
     right: 5%;
     border-style: solid;
+}
+
+
+
+.form-control{
+    width: 47.8vh;
+}
+.form-control-desc{
+    width: 48vh;
+    height: 8vh;
+}
+.form-control-top{
+    width: 49.5vh;
+}
+
+.confirmar{
+    width: 100%;
+    height: 12vh;
+}
+.tabTitulo{
+    width: 100%;
+    margin-bottom: -10px;
+}
+.thTitulo{
+    margin-bottom: -500px;
+}
+
+.textTitulo{
+    text-align: center;
+}
+
+
+.bota {
+    width: 100.5vh;  /* Faz a largura da .bota ocupar 100% da largura da section */
+    display: block;
+    text-align: center; /* Alinha o botão no centro, já que agora a largura é 100% */
+}
+
+.opc {
+    width: 100.5vh;  /* Garante que a classe opc ocupe toda a largura disponível */
+    display: block; /* Garante que ela seja um bloco e ocupe 100% da largura */
+    text-align: center; /* Alinha o conteúdo dentro da .opc ao centro (se for necessário) */
 }

@@ -3,37 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu de Atualização</title>
+    <title>Atualizar Relatório</title>
     <link rel="stylesheet" href="styleUp.css">
 </head>
 <body>
     <section>
-        <table class="tMenu2">
+        <table class="top">
             <tr>
                 <th>
-                    <center>
-                        <form action="" >
-                            <input type="submit" value="ATUALIZAR TAREFA" class="button2"/>
-                        </form>
-                    </center>
+                    <label for="relatorio">Nome do Relatório</label>
+                    <!-- Modificado para usar "relatório" em vez de "tarefa" -->
+                    <select class="form-control-top" id="relatorio" required onchange="exibirDetalhes()">
+                        <option value="">Nenhum relatório</option> <!-- Nova opção para indicar 'nenhum relatório' -->
+                    </select>
+                </th>
+                <th>
+                    <h3 id="tarefaR">
+                        Tarefa Relacionada:
+                        <select class="form-control-top" id="tarefa" required onchange="exibirDetalhes()">
+                            <option value="">Nenhuma tarefa</option>
+                        </select>
+                    </h3>
                 </th>
             </tr>
-            <tr>
-                <th>
-                    <center>
-                        <form action="" >
-                            <input type="submit" value="ATUALIZAR RELATÓRIO" class="button2"/>
-                        </form>
-                    </center>
+            <tr class="top">
+                <th id="lista">
+                    <h3 id="finalidadeR">
+                        Finalidade:<input type="text" class="form-control" id="finalidade" required value="">
+                    </h3>
                 </th>
-            </tr>
-            <tr>
                 <th>
-                    <center>
-                        <form action="" >
-                            <input type="submit" value="ATUALIZAR USUARIO" class="button2"/>
-                        </form>
-                    </center>
+                    <h3 id="dataR">
+                        Data:<input type="date" class="form-control" id="dataRelatorio" required value="">
+                    </h3>
+                </th>
+            <tr>
+                <th>    
+                    <h3 id="descricaoR">
+                        Descrição:<textarea class="form-control-desc" id="descricaoRelatorio" required></textarea>
+                    </h3>
+                </th>
+                <th>
+                    <h3 id="componentesR">
+                        Componentes:<input type="text" class="form-control" id="componente" required>
+                    </h3>
+                </th>
+            </tr>            
+            <tr>
+                <th class="bota">
+                    <button type="submit" class="confirmar" onclick="">Atualizar Relatório</button>
                 </th>
             </tr>
         </table>
@@ -47,8 +65,8 @@
                     </form>
                 </th>
                 <th>
-                    <form action="">
-                        <input type="submit" value="" class="button"/>
+                    <form action="../update/menuAtualizar.html">
+                        <input type="submit" value="VOLTAR" class="button"/>
                     </form>
                 </th>
             </tr>
@@ -66,6 +84,6 @@
             </tr>
         </table>
       </div>
-    <!-- <script src="main.js"></script> -->
+    <script src="mainR.js"></script>
 </body>
 </html>

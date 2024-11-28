@@ -52,7 +52,7 @@ const Tarefa = sequelize.define("Tarefa", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   nome: { type: DataTypes.STRING },
   descricao: { type: DataTypes.TEXT },
-  data: { type: DataTypes.DATE },
+  prazo: { type: DataTypes.DATE },
   responsaveis: { type: DataTypes.STRING },
   setor: { type: DataTypes.STRING },
 });

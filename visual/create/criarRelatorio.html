@@ -8,12 +8,12 @@
 </head>
 <body>
     <section>
-      <h2 class="tituloPrincipal">Criação de Tarefa e Relatórios</h2>        
+      <h1 class="tituloPrincipal">Cadastrar Relatório</h1>        
             <div class="areaRelario">
               <table class="tabTitulo">
                 <tr>
                   <th class="thTitulo">
-                      <h4 class="textTitulo">Cadastrar Relatório</h4>
+                      <h4 class="textTitulo">Preencha os campos abaixo</h4>
                   </th>
                 </tr>
               </table>
@@ -32,24 +32,24 @@
                         </select>
                       </th>
                       <th>
-                        <label for="finalidade">Finalidade</label>
-                        <input type="text" class="form-control" id="finalidade" required>
-                      </th>
-                    </tr>
-                    <tr>
-                      <th>
                         <label for="dataTarefa">Data do Relatório</label>
                         <input type="date" class="form-control" id="dataRelatorio" required>
                       </th>
+                    </tr>
+                    <tr>
                       <th>
-                        <label for="descricaoRelatorio">Descrição</label>
-                        <textarea class="form-control" id="descricaoRelatorio" required></textarea>
+                        <label for="finalidade">Finalidade</label>
+                        <input type="text" class="form-control" id="finalidade" required>
+                      </th>
+                      <th>
+                        <label for="tipoRelatorio">Componentes</label>
+                        <input type="text" class="form-control" id="componente" required>
                       </th>
                     </tr>
                     <tr>
                       <th>
-                        <label for="tipoRelatorio">Componentes</label>
-                        <input type="text" class="form-control" id="componente" required>
+                        <label for="descricaoRelatorio">Descrição</label>
+                        <textarea class="form-control-desc" id="descricaoRelatorio" required></textarea>
                       </th>
                       <th>
                         <button type="submit" class="confirmar">Cadastrar Relatório</button>
@@ -78,8 +78,8 @@
           </tr>
           <tr>
               <th>
-                  <form action="">
-                      <input type="submit" value="" class="button"/>
+                  <form action="../create/menuCriar.html">
+                      <input type="submit" value="VOLTAR" class="button"/>
                   </form>
               </th>
               <th>

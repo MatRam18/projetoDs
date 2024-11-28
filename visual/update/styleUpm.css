@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
-    background-color: rgb(190, 190, 190);
+    background-color: rgb(63, 63, 63);
 }
 
 
@@ -39,9 +39,9 @@ table, th, td {
 section {
     background-color: #f1f1f1;
     width: 39.8%; 
-    height: 46%; 
+    height: 90%; 
     position: fixed;
-    top: 20%;
+    top: 5%;
     left: 30%;
     border: 5px;
     border-style: solid;
@@ -56,30 +56,4 @@ section {
     top: 78%;
     right: 5%;
     border-style: solid;
-}
-
-
-
-.form-control{
-    width: 38vh;
-}
-.form-control-desc{
-    width: 38vh;
-    height: 8vh;
-}
-
-.confirmar{
-    width: 39vh;
-    height: 12vh;
-}
-.tabTitulo{
-    width: 100%;
-    margin-bottom: -10px;
-}
-.thTitulo{
-    margin-bottom: -500px;
-}
-
-.textTitulo{
-    text-align: center;
 }
