@@ -42,6 +42,12 @@ table, th, td {
     height: 35vh;
 }
 
+.relato{
+    width: 39vh;
+    height: 60vh;
+}
+
+
 .button {
     width: 100%;  /* Faz os botões dentro da .bota ocuparem toda a largura */
     height: 5vh;

@@ -11,12 +11,6 @@
         <table class="top">
             <tr>
                 <th>
-                    <label for="relatorio">Nome do Relatório</label>
-                    <select class="form-control-top" id="relatorio" onchange="exibirDetalhes()" required>
-                        <option value="">Selecione um Relatório</option>
-                    </select>                    
-                </th>
-                <th>
                     <h3 id="tarefaR">
                         Tarefa Relacionada:
                         <select class="form-control-top" id="tarefa" required onchange="exibirDetalhes()">
@@ -33,7 +27,7 @@
                 </th>
                 <th>
                     <h3 id="dataR">
-                        Data:<input type="date" class="form-control" id="dataRelatorio" value="">
+                        Data:<input type="date" class="form-control" id="dataRelatorio" value=""/>
                     </h3>
                 </th>
             </tr>
@@ -45,7 +39,7 @@
                 </th>
                 <th>
                     <h3 id="componentesR">
-                        Componente:<input type="text" class="form-control" id="componente" value="">
+                        Componente:<input type="text" class="form-control" id="componente" value=""/>
                     </h3>
                 </th>
             </tr>            
@@ -57,7 +51,7 @@
         </table>
     </section>
     <aside>
-        <table id="relato">
+        <table id="relato" class="relato">
             <tr>
                 <td><b>Finalidade:</b></td>
                 <td id="finalidadeRelato"></td>
@@ -79,14 +73,13 @@
                 <td id="tarefaRelato"></td>
             </tr>
         </table>
-        
     </aside>
     
     <div class="menu">
         <table class="tMenu">
             <tr>
                 <th><form action="../read/index.html"><input type="submit" value="MENU" class="button"/></form></th>
-                <th><form action="../update/menuAtualizar.html"><input type="submit" value="VOLTAR" class="button"/></form></th>
+                <th><form action=""><input type="submit" value="" class="button"/></form></th>
             </tr>
             <tr>
                 <th><form action="../create/menuCriar.html"><input type="submit" value="CRIAR" class="button"/></form></th>
@@ -94,6 +87,7 @@
             </tr>
         </table>
     </div>
+
     <script src="mainR.js"></script>
 </body>
 </html>
