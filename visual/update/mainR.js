@@ -1,107 +1,143 @@
-document.addEventListener("DOMContentLoaded", function() {
-    // Função para pegar o ID da URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const relatorioId = urlParams.get('id');  // Obtém o 'id' da URL
+// Função para exibir os detalhes do relatório com base no ID da URL
+async function exibirDetalhes() {
+  const relatorioId = obterIdDaURL();  // Captura o id da URL
 
-    if (relatorioId) {
-        carregarRelatorio(relatorioId);  // Se o ID existir, carrega os dados
-    } else {
-        alert('ID do relatório não encontrado na URL!');
-    }
-});
+  // Se não houver ID na URL, não faz nada
+  if (!relatorioId) return;
 
-// Função para carregar os dados do relatório com base no ID
-function carregarRelatorio(id) {
-    // Supondo que a API que retorna os dados do relatório esteja disponível em /api/relatorios/{id}
-    fetch(`/api/relatorios/${id}`)
-        .then(response => response.json())
-        .then(data => {
-            // Preenche os campos com os dados do relatório
-            document.getElementById('tarefa').value = data.tarefaId || '';  // Caso a tarefa não exista, deixe em branco
-            document.getElementById('finalidade').value = data.finalidade || '';
-            document.getElementById('dataRelatorio').value = data.data || '';
-            document.getElementById('descricaoRelatorio').value = data.descricao || '';
-            document.getElementById('componente').value = data.componentes || '';
+  try {
+      // Requisição para buscar todos os relatórios
+      const resposta = await fetch('http://localhost:3031/relatorios');
 
-            // Exibe os dados no lado direito da página
-            document.getElementById('finalidadeRelato').textContent = data.finalidade || '';
-            document.getElementById('dataRelato').textContent = data.data || '';
-            document.getElementById('componenteRelato').textContent = data.componentes || '';
-            document.getElementById('descricaoRelato').textContent = data.descricao || '';
-            document.getElementById('tarefaRelato').textContent = data.tarefaId || '';
+      // Verificar se a resposta foi bem-sucedida
+      if (!resposta.ok) {
+          throw new Error(`Erro na requisição: ${resposta.statusText}`);
+      }
 
-            // Se houver tarefas relacionadas, preenche o campo de seleção
-            carregarTarefasRelacionadas(data.tarefas || []);  // Garantir que seja um array vazio caso não haja tarefas
-        })
-        .catch(error => console.error('Erro ao carregar relatório:', error));
+      // Tentar analisar a resposta como JSON
+      const relatorios = await resposta.json();
+
+      // Procurar o relatório com o id correspondente
+      const relatorio = relatorios.find(r => r.id == relatorioId);
+
+      // Se o relatório não for encontrado, mostrar erro
+      if (!relatorio) {
+          throw new Error(`Relatório com ID ${relatorioId} não encontrado`);
+      }
+
+      // Requisição para buscar todas as tarefas (para obter o nome da tarefa pelo id)
+      const respostaTarefas = await fetch('http://localhost:3031/tarefas');
+      if (!respostaTarefas.ok) {
+          throw new Error(`Erro ao buscar as tarefas: ${respostaTarefas.statusText}`);
+      }
+      const tarefas = await respostaTarefas.json();
+
+      // Encontrar o nome da tarefa com base no tarefaId do relatório
+      const tarefa = tarefas.find(t => t.id == relatorio.tarefaId);
+
+      // Exibir as informações no aside
+      document.getElementById("finalidadeRelato").textContent = relatorio.finalidade;
+      document.getElementById("dataRelato").textContent = relatorio.data;
+      document.getElementById("descricaoRelato").textContent = relatorio.descricao;
+      document.getElementById("componenteRelato").textContent = relatorio.componentes;
+      document.getElementById("tarefaRelato").textContent = tarefa ? tarefa.nome : "Nenhuma tarefa";
+
+  } catch (erro) {
+      console.error("Erro ao buscar os relatórios:", erro);
+      alert("Erro ao buscar os relatórios. Verifique a URL ou a resposta do servidor.");
+  }
 }
 
-// Função para carregar as tarefas relacionadas no campo de seleção
-function carregarTarefasRelacionadas(tarefas) {
-    const tarefaSelect = document.getElementById('tarefa');
-    
-    // Limpa as opções anteriores
-    tarefaSelect.innerHTML = '<option value="">Nenhuma tarefa</option>';
 
-    // Verifica se há tarefas
-    if (tarefas.length > 0) {
-        tarefas.forEach(tarefa => {
-            const option = document.createElement('option');
-            option.value = tarefa.id;  // Supondo que cada tarefa tem um 'id'
-            option.textContent = tarefa.nome;  // Supondo que cada tarefa tem um 'nome'
-            tarefaSelect.appendChild(option);
-        });
-    }
+// Função para obter o ID da URL
+function obterIdDaURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('id');  // Obtém o valor do parâmetro 'id' na URL
 }
 
-// Função para enviar os dados atualizados
+// Função para preencher o select de tarefas
+async function preencherTarefas() {
+  try {
+      const resposta = await fetch('http://localhost:3031/tarefas');
+      const tarefas = await resposta.json();
+
+      // Seleciona o campo select de tarefas
+      const tarefaSelect = document.getElementById("tarefa");
+
+      // Limpa as opções existentes
+      tarefaSelect.innerHTML = "<option value=''>Nenhuma tarefa</option>";
+
+      // Preenche o select com as tarefas
+      tarefas.forEach(tarefa => {
+          const option = document.createElement("option");
+          option.value = tarefa.id;
+          option.textContent = tarefa.nome;
+          tarefaSelect.appendChild(option);
+      });
+  } catch (erro) {
+      console.error("Erro ao carregar as tarefas: ", erro);
+  }
+}
 async function atualizarRelatorio() {
-    const id = document.getElementById('id').value;
-    const finalidade = document.getElementById('finalidade').value;
-    const data = document.getElementById('dataRelatorio').value;
-    const descricao = document.getElementById('descricaoRelatorio').value;
-    const componente = document.getElementById('componente').value;
-    const tarefaId = document.getElementById('tarefa').value;
+  const relatorioId = obterIdDaURL();  // Captura o id da URL
+  
+  // Verifica se há um ID na URL, caso contrário, não faz nada
+  if (!relatorioId) {
+    alert("ID do relatório não encontrado na URL.");
+    return;
+  }
 
-    // Criação de um objeto com os dados a serem atualizados
-    const dadosAtualizados = {};
+  // Pega os dados dos campos de input e textarea
+  const finalidade = document.getElementById("finalidade").value;
+  const dataRelatorio = document.getElementById("dataRelatorio").value;
+  const descricao = document.getElementById("descricaoRelatorio").value;
+  const componente = document.getElementById("componente").value;
+  const tarefaId = document.getElementById("tarefa").value;  // ID da tarefa selecionada no select
+  
+  // Verifica se todos os campos estão preenchidos
+  if (!finalidade || !dataRelatorio || !descricao || !componente) {
+    alert("Todos os campos devem ser preenchidos.");
+    return;
+  }
 
-    // Adiciona os campos ao objeto de dados se não estiverem vazios
-    if (finalidade.trim() !== "") dadosAtualizados.finalidade = finalidade;
-    if (data.trim() !== "") dadosAtualizados.data = data;
-    if (descricao.trim() !== "") dadosAtualizados.descricao = descricao;
-    if (componente.trim() !== "") dadosAtualizados.componente = componente;
-    if (tarefaId.trim() !== "") dadosAtualizados.tarefaId = tarefaId;
+  // Prepara o corpo da requisição
+  const dadosAtualizados = {
+    finalidade: finalidade,
+    data: dataRelatorio,
+    descricao: descricao,
+    componentes: componente,
+    tarefaId: tarefaId ? tarefaId : null,  // Se não tiver tarefa selecionada, envia null
+  };
 
-    // Se o objeto estiver vazio, significa que nenhum campo foi alterado
-    if (Object.keys(dadosAtualizados).length === 0) {
-        alert('Nenhum campo foi alterado.');
-        return;
+  try {
+    // Envia a requisição PUT para atualizar o relatório
+    const resposta = await fetch(`http://localhost:3031/relatorio/${relatorioId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dadosAtualizados),
+    });
+
+    // Verifica se a requisição foi bem-sucedida
+    if (!resposta.ok) {
+      throw new Error("Erro ao atualizar o relatório");
     }
 
-    // Exibindo o objeto com os dados a serem atualizados para depuração
-    console.log("Dados a serem atualizados:", dadosAtualizados);
+    const resultado = await resposta.json();
+    alert("Relatório atualizado com sucesso!");
+    
+    // Você pode adicionar outras ações após o sucesso, como redirecionar o usuário ou limpar os campos
+    // window.location.href = "algum outro lugar";  // Exemplo de redirecionamento
 
-    try {
-        // Envia os dados atualizados para o servidor
-        const resposta = await fetch(`/relatorio/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(dadosAtualizados)
-        });
-
-        if (resposta.ok) {
-            alert('Relatório atualizado com sucesso!');
-            carregarRelatorio(id);  // Recarregar os dados para refletir as mudanças
-        } else {
-            // Exibindo o erro de resposta
-            const erro = await resposta.json();
-            alert(`Erro ao atualizar o relatório: ${erro.message || 'Erro desconhecido'}`);
-        }
-    } catch (error) {
-        console.error('Erro ao fazer a requisição:', error);
-        alert('Erro ao tentar atualizar o relatório. Verifique sua conexão ou tente novamente mais tarde.');
-    }
+  } catch (erro) {
+    console.error("Erro ao atualizar o relatório:", erro);
+    alert("Erro ao atualizar o relatório. Tente novamente.");
+  }
 }
+
+// Carregar as tarefas e exibir os detalhes do relatório na página
+window.onload = function() {
+  preencherTarefas();  // Preenche o select de tarefas
+  exibirDetalhes();  // Exibe os detalhes do relatório com base no id da URL
+};

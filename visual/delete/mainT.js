@@ -69,10 +69,11 @@ async function exibirDetalhes() {
 }
 
 // Função para mostrar a confirmação de exclusão
+// Função para mostrar a confirmação de exclusão
 function confirmarApagar() {
     const tarefaId = document.getElementById('tarefa').value;
-    
-    if (!tarefaId) return;
+
+    if (!tarefaId) return; // Não permite confirmar se não há tarefa selecionada.
 
     const certeza = document.getElementById('certeza');
     certeza.innerHTML = ` 
@@ -81,18 +82,30 @@ function confirmarApagar() {
     `;
 }
 
+
+// Função para apagar a tarefa
 // Função para apagar a tarefa
 async function apagarTarefa(tarefaId) {
+    if (!tarefaId) {
+        alert('ID de tarefa não fornecido!');
+        return;
+    }
+
     try {
+        // Faz a requisição DELETE para a API
         const response = await fetch(`http://localhost:3031/tarefa/${tarefaId}`, {
             method: 'DELETE',
         });
 
+        // Verifica a resposta da API
         const result = await response.json();
+        
+        console.log('Resposta da API ao excluir tarefa:', result); // Log da resposta
 
         if (response.ok) {
             alert('Tarefa apagada com sucesso');
-            window.location.href = '../read/index.html';
+            // Atualiza a lista de tarefas ou redireciona para outra página
+            window.location.href = '../read/index.html'; // Redireciona após excluir
         } else {
             alert(result.mensagem || 'Erro ao apagar tarefa');
         }
@@ -102,12 +115,16 @@ async function apagarTarefa(tarefaId) {
     }
 }
 
+
 // Função que será chamada quando a seleção de tarefa mudar
+
+// Função para limpar a confirmação caso o usuário mude a seleção de tarefa
 function limparConfirmacao() {
     // Remove a mensagem de confirmação caso o usuário mude a seleção da tarefa
     const certeza = document.getElementById('certeza');
     certeza.innerHTML = '';
 }
+
 
 // Chama a função para carregar as tarefas quando a página for carregada
 window.onload = () => {

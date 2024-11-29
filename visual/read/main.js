@@ -2,23 +2,31 @@ document.addEventListener("DOMContentLoaded", async () => {
     const atualizarButton = document.getElementById("atualizar");
 
     // Função para carregar os detalhes do relatório
-    function loadReportDetails(id, relatorios, tarefas) {
-        const relatorio = relatorios.find(r => r.id == id);
-        if (relatorio) {
-            // Atualizar o botão "atualizar"
-            atualizarButton.value = "ATUALIZAR";
-            atualizarButton.onclick = function() {
-                window.location.href = `../update/atualizarRelatorio.html?id=${relatorio.id}`;
-            };
+    // Função para carregar os detalhes do relatório
+function loadReportDetails(id, relatorios, tarefas) {
+    const relatorio = relatorios.find(r => r.id == id);
+    if (relatorio) {
+        // Atualizar o botão "atualizar"
+        atualizarButton.value = "ATUALIZAR";
+        atualizarButton.onclick = function() {
+            window.location.href = `../update/atualizarRelatorio.html?id=${relatorio.id}`;
+        };
 
-            // Restante do código para carregar os detalhes do relatório
-            document.getElementById('taskTittle').innerHTML = `<h1 class="nomeTaf">${relatorio.finalidade}</h1>`;
-            document.getElementById('taskDate').innerHTML = `<h2>${new Date(relatorio.data).toLocaleDateString("pt-BR")}</h2>`;
-            document.getElementById('taskSetor').innerHTML = `<h3>Tarefa: ${relatorio.tarefaId}</h3>`;
-            document.getElementById('taskRes').innerHTML = `<h4>Componentes: ${relatorio.componentes}</h4>`;
-            document.getElementById('taskDesc').innerHTML = `<h4>${relatorio.descricao}</h4>`;
-        }
+        // Buscar a tarefa correspondente ao tarefaId
+        const tarefa = tarefas.find(t => t.id == relatorio.tarefaId);
+
+        // Restante do código para carregar os detalhes do relatório
+        document.getElementById('taskTittle').innerHTML = `<h1 class="nomeTaf">${relatorio.finalidade}</h1>`;
+        document.getElementById('taskDate').innerHTML = `<h2>${new Date(relatorio.data).toLocaleDateString("pt-BR")}</h2>`;
+
+        // Exibir o nome da tarefa correspondente ao relatorio.tarefaId
+        document.getElementById('taskSetor').innerHTML = `<h3>Tarefa: ${tarefa ? tarefa.nome : 'Tarefa não encontrada'}</h3>`;
+
+        document.getElementById('taskRes').innerHTML = `<h4>Componentes: ${relatorio.componentes}</h4>`;
+        document.getElementById('taskDesc').innerHTML = `<h4>${relatorio.descricao}</h4>`;
     }
+}
+
 
     // Função para carregar os detalhes da tarefa
     function loadTaskDetails(id, tarefas) {
