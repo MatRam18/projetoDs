@@ -5,13 +5,13 @@ async function carregarTarefas() {
         const tarefas = await response.json();
         const selectTarefa = document.getElementById('tarefa');
         
-        // Limpa as opções existentes, incluindo a opção 'Nenhuma tarefa'
+        // Limpa as opções existentes, incluindo a opção 'Nenhuma Tarefa'
         selectTarefa.innerHTML = '';
 
-        // Adiciona a opção 'Nenhuma tarefa' de volta ao início
+        // Adiciona a opção 'Nenhuma Tarefa' de volta ao início
         const optionNone = document.createElement('option');
         optionNone.value = '';
-        optionNone.textContent = 'Nenhuma tarefa';
+        optionNone.textContent = 'Nenhuma Tarefa';
         selectTarefa.appendChild(optionNone);
 
         // Preenche o select com as tarefas
@@ -27,18 +27,17 @@ async function carregarTarefas() {
 }
 
 // Função para exibir os detalhes da tarefa selecionada
-// Função para exibir os detalhes da tarefa selecionada
 async function exibirDetalhes() {
     const tarefaId = document.getElementById('tarefa').value;
 
     if (!tarefaId) {
-        // Se a opção 'Nenhuma tarefa' for selecionada, apenas mostra os textos padrões
+        // Se a opção 'Nenhuma Tarefa' for selecionada, apenas mostra os textos padrões
         document.getElementById('nomeT').textContent = 'Nome:';
+        document.getElementById('dataT').textContent = 'Data:';
+        document.getElementById('descricaoT').textContent = 'Descrição:';
+        document.getElementById('responsaveisT').textContent = 'Responsáveis:';
         document.getElementById('setorT').textContent = 'Setor:';
-        document.getElementById('dataT').textContent = 'Prazo:';
-        document.getElementById('respT').textContent = 'Responsáveis:';
-        document.getElementById('descT').textContent = 'Descrição:';
-        return; 
+        return;
     }
 
     try {
@@ -53,10 +52,10 @@ async function exibirDetalhes() {
             if (tarefaSelecionada) {
                 // Atualiza os campos com os detalhes da tarefa
                 document.getElementById('nomeT').textContent = `Nome: ${tarefaSelecionada.nome}`;
+                document.getElementById('dataT').textContent = `Data: ${new Date(tarefaSelecionada.data).toLocaleDateString()}`;
+                document.getElementById('descricaoT').textContent = `Descrição: ${tarefaSelecionada.descricao}`;
+                document.getElementById('responsaveisT').textContent = `Responsáveis: ${tarefaSelecionada.responsaveis}`;
                 document.getElementById('setorT').textContent = `Setor: ${tarefaSelecionada.setor}`;
-                document.getElementById('dataT').textContent = `Prazo: ${new Date(tarefaSelecionada.data).toLocaleDateString()}`;
-                document.getElementById('respT').textContent = `Responsáveis: ${tarefaSelecionada.responsaveis}`;
-                document.getElementById('descT').textContent = `Descrição: ${tarefaSelecionada.descricao}`;
             } else {
                 alert('Tarefa não encontrada!');
             }
@@ -69,11 +68,10 @@ async function exibirDetalhes() {
 }
 
 // Função para mostrar a confirmação de exclusão
-// Função para mostrar a confirmação de exclusão
 function confirmarApagar() {
     const tarefaId = document.getElementById('tarefa').value;
-
-    if (!tarefaId) return; // Não permite confirmar se não há tarefa selecionada.
+    
+    if (!tarefaId) return;
 
     const certeza = document.getElementById('certeza');
     certeza.innerHTML = ` 
@@ -82,30 +80,18 @@ function confirmarApagar() {
     `;
 }
 
-
-// Função para apagar a tarefa
 // Função para apagar a tarefa
 async function apagarTarefa(tarefaId) {
-    if (!tarefaId) {
-        alert('ID de tarefa não fornecido!');
-        return;
-    }
-
     try {
-        // Faz a requisição DELETE para a API
         const response = await fetch(`http://localhost:3031/tarefa/${tarefaId}`, {
             method: 'DELETE',
         });
 
-        // Verifica a resposta da API
         const result = await response.json();
-        
-        console.log('Resposta da API ao excluir tarefa:', result); // Log da resposta
 
         if (response.ok) {
             alert('Tarefa apagada com sucesso');
-            // Atualiza a lista de tarefas ou redireciona para outra página
-            window.location.href = '../read/index.html'; // Redireciona após excluir
+            window.location.href = '../read/index.html';
         } else {
             alert(result.mensagem || 'Erro ao apagar tarefa');
         }
@@ -115,16 +101,12 @@ async function apagarTarefa(tarefaId) {
     }
 }
 
-
 // Função que será chamada quando a seleção de tarefa mudar
-
-// Função para limpar a confirmação caso o usuário mude a seleção de tarefa
 function limparConfirmacao() {
     // Remove a mensagem de confirmação caso o usuário mude a seleção da tarefa
     const certeza = document.getElementById('certeza');
     certeza.innerHTML = '';
 }
-
 
 // Chama a função para carregar as tarefas quando a página for carregada
 window.onload = () => {

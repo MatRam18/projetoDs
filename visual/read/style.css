@@ -96,8 +96,8 @@ section {
     left: 5%;
     border: 5px;
     border-style: solid;
+    overflow-y: auto;  /* Permite o scroll se o conteúdo exceder a altura da section */
 }
-
 article {
     background-color: #f1f1f1;
     width: 15%;
@@ -122,6 +122,8 @@ aside {
     overflow-y: auto;  /* Permite o scroll se o conteúdo exceder a altura */
     padding: 1%;     /* Adiciona um pouco de espaçamento interno */
 }
+
+
 
 .menu{
     background-color: #f1f1f1;
@@ -190,4 +192,10 @@ aside {
 
 #finalidadeList li:hover {
     color: #ca1a1a;  /* Cor do texto ao passar o mouse */
+}
+
+#taskDesc {
+    word-wrap: break-word;   /* Faz com que o texto que ultrapassar a linha da direita quebre para a próxima linha */
+    white-space: normal;     /* Permite que o texto se quebre automaticamente */
+    padding: 10px;           /* Adiciona espaçamento interno se necessário */
 }

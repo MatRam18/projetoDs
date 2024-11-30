@@ -10,16 +10,17 @@
     <section>
         <table class="top">
             <tr>
-                <th>
+                <th class="top1" colspan="2">
                     <h3 id="tarefaR">
                         Tarefa Relacionada:
-                        <select class="form-control-top" id="tarefa" required onchange="exibirDetalhes()">
+                        <select class="form-control" id="tarefa" required onchange="exibirDetalhes()">
                             <option value="">Nenhuma tarefa</option>
                         </select>                        
                     </h3>
                 </th>
+                
             </tr>
-            <tr class="top">
+            <tr>
                 <th id="lista">
                     <h3 id="finalidadeR">
                         Finalidade:<input type="text" class="form-control" id="finalidade" value="">
@@ -51,7 +52,7 @@
         </table>
     </section>
     <aside>
-      <table id="relato">
+      <table id="relato" class="det">
           <tr>
               <td><b>Finalidade:</b></td>
               <td id="finalidadeRelato"></td>
@@ -77,12 +78,20 @@
     <div class="menu">
         <table class="tMenu">
             <tr>
-                <th><form action="../read/index.html"><input type="submit" value="MENU" class="button"/></form></th>
-                <th><form action="../update/menuAtualizar.html"><input type="submit" value="VOLTAR" class="button"/></form></th>
+                <th>
+                    <form action="../read/index.html"><input type="submit" value="MENU" class="button"/></form>
+                </th>
+                <th>
+                    <form action=""><input type="submit" value="" class="button"/></form>
+                </th>
             </tr>
             <tr>
-                <th><form action="../create/menuCriar.html"><input type="submit" value="CRIAR" class="button"/></form></th>
-                <th><form action="../delete/menuApagar.html"><input type="submit" value="APAGAR" class="button"/></form></th>
+                <th>
+                    <form action="../create/menuCriar.html"><input type="submit" value="CRIAR" class="button"/></form>
+                </th>
+                <th>
+                    <form action="../delete/menuApagar.html"><input type="submit" value="APAGAR" class="button"/></form>
+                </th>
             </tr>
         </table>
     </div>

@@ -177,16 +177,21 @@ rotas.delete("/relatorio/:id", async (req, res) => {
   }
 });
 
-// Deletar tarefa
-rotas.get('/tarefa/:id', async (req, res) => {
+// Rota para deletar tarefa
+rotas.delete("/tarefa/:id", async (req, res) => {
   const { id } = req.params;
   try {
-      const tarefa = await Tarefa.findByPk(id);
-      res.json(tarefa);
-  } catch (err) {
-      res.status(500).send('Erro ao buscar tarefa');
+    const deleted = await Tarefa.destroy({ where: { id } });
+    if (deleted) {
+      res.json({ mensagem: "Tarefa deletada com sucesso" });
+    } else {
+      res.status(404).json({ mensagem: "Tarefa não encontrada" });
+    }
+  } catch (error) {
+    res.status(500).json({ erro: "Erro ao deletar tarefa", detalhe: error.message });
   }
 });
+
 
 // Atualizar relatório
 rotas.get('/relatorio/:id', async (req, res) => {
@@ -205,29 +210,29 @@ rotas.get('/relatorio/:id', async (req, res) => {
   }
 });
 
-// Rota para atualizar um relatório
 rotas.put('/relatorio/:id', async (req, res) => {
   const { id } = req.params;
-  const { finalidade, data, descricao, componente, tarefaId } = req.body;
+  const { finalidade, data, descricao, componentes, tarefaId } = req.body;
 
   try {
-      const relatorio = await Relatorio.findByPk(id);
-      if (!relatorio) {
-          return res.status(404).json({ error: 'Relatório não encontrado' });
-      }
+    const relatorio = await Relatorio.findByPk(id);
+    if (!relatorio) {
+      return res.status(404).json({ error: 'Relatório não encontrado' });
+    }
 
-      // Atualizando os dados do relatório
-      await relatorio.update({
-          finalidade,
-          data,
-          descricao,
-          componente,
-          tarefaId
-      });
+    // Certifique-se que o campo no banco é 'componente' e não 'componentes'.
+    await relatorio.update({
+      finalidade,
+      data,
+      descricao,
+      componentes,  // Atualize este campo se o nome correto for 'componente'
+      tarefaId
+    });
 
-      res.json(relatorio);  // Retorna o relatório atualizado
+    res.json(relatorio);  // Retorna o relatório atualizado
   } catch (error) {
-      res.status(500).json({ error: error.message });
+    console.error(error); // Log para entender o que está acontecendo no backend
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -267,135 +272,6 @@ rotas.get("/rela/:finalidade", async (req, res) => {
 });
 
 
-// Rota para buscar um relatório específico pelo nome (finalidade)
-rotas.get('/relatorio/nome/:finalidade', async (req, res) => {
-  const { finalidade } = req.params;
-  
-  try {
-      const relatorio = await Relatorio.findOne({
-          where: {
-              finalidade: finalidade
-          }
-      });
-
-      if (!relatorio) {
-          return res.status(404).json({ message: 'Relatório não encontrado' });
-      }
-
-      res.json(relatorio);
-  } catch (error) {
-      console.error('Erro ao buscar relatório:', error);
-      res.status(500).json({ error: 'Erro ao buscar relatório' });
-  }
-});
-
-
-// Rota para associar uma tarefa a um relatório
-rotas.post('/relatorio/:relatorioId/associar-tarefa', async (req, res) => {
-  const { relatorioId } = req.params;
-  const { tarefaId } = req.body;
-
-  try {
-      const relatorio = await Relatorio.findByPk(relatorioId);
-      if (!relatorio) {
-          return res.status(404).json({ message: 'Relatório não encontrado' });
-      }
-
-      const tarefa = await Tarefa.findByPk(tarefaId);
-      if (!tarefa) {
-          return res.status(404).json({ message: 'Tarefa não encontrada' });
-      }
-
-      // Atualiza a relação entre o relatório e a tarefa
-      relatorio.tarefaId = tarefaId;
-      await relatorio.save();
-
-      res.json({ message: 'Tarefa associada com sucesso!' });
-  } catch (error) {
-      console.error('Erro ao associar tarefa ao relatório:', error);
-      res.status(500).json({ error: 'Erro ao associar tarefa' });
-  }
-});
-rotas.post('/relatorio/atualizar/:nome', async (req, res) => {
-  const nomeRelatorio = req.params.nome;
-  const { finalidade, data, descricao, componentes, tarefaId } = req.body;
-
-  // Aqui você deve realizar a lógica de atualização no banco de dados
-  // Exemplo com um banco de dados MongoDB:
-  const resultado = await Relatorio.updateOne(
-      { nome: nomeRelatorio }, // filtro para encontrar o relatório
-      { $set: { finalidade, data, descricao, componentes, tarefaId } } // dados a atualizar
-  );
-
-  if (resultado.modifiedCount > 0) {
-      res.status(200).send("Relatório atualizado com sucesso!");
-  } else {
-      res.status(400).send("Erro ao atualizar o relatório.");
-  }
-});
-
-rotas.put('/relatorio/atualizar/:finalidade', (req, res) => {
-  const finalidade = req.params.finalidade;  // Pega a finalidade do relatório
-  const { data, descricao, componentes, tarefaId } = req.body;  // Dados a serem atualizados
-
-  // Encontrar o relatório com a finalidade especificada
-  const relatorio = relatorios.find(r => r.finalidade === finalidade);
-
-  if (!relatorio) {
-      return res.status(404).json({ message: "Relatório não encontrado com a finalidade fornecida." });
-  }
-
-  // Atualizar o relatório
-  relatorio.data = data || relatorio.data;
-  relatorio.descricao = descricao || relatorio.descricao;
-  relatorio.componentes = componentes || relatorio.componentes;
-  relatorio.tarefaId = tarefaId || relatorio.tarefaId;
-
-  // Responder com sucesso
-  res.status(200).json({ message: "Relatório atualizado com sucesso!", relatorio });
-});
-
-
-
-// Atualizar relatório (modificado para usar Sequelize)
-
-rotas.put('/relatorio/atualizar/:finalidade', async (req, res) => {
-  const { finalidade, descricao, data, componentes, tarefaId } = req.body;
-
-  try {
-      if (!finalidade || !descricao || !data || !componentes) {
-          return res.status(400).json({ error: "Todos os campos são obrigatórios." });
-      }
-
-      // Tente capturar possíveis erros
-      const [updated] = await Relatorio.update(
-          {
-              descricao, 
-              data, 
-              componentes, 
-              tarefaId: tarefaId || null
-          },
-          {
-              where: { finalidade: req.params.finalidade }
-          }
-      );
-
-      if (updated === 0) {
-          return res.status(404).json({ error: "Relatório não encontrado." });
-      }
-
-      const updatedRelatorio = await Relatorio.findOne({
-          where: { finalidade: req.params.finalidade }
-      });
-
-      res.json(updatedRelatorio);
-  } catch (err) {
-      console.error('Erro ao atualizar o relatório:', err); // Aqui você pode ver o erro no console
-      res.status(500).json({ error: "Erro interno do servidor: " + err.message });
-  }
-});
-
-
 // Rota para pegar os detalhes do relatório
 rotas.get('/api/relatorios/:id', (req, res) => {
   const relatorio = relatorios.find(r => r.id == req.params.id);
@@ -406,17 +282,7 @@ rotas.get('/api/relatorios/:id', (req, res) => {
   }
 });
 
-// Rota para atualizar o relatório
-rotas.put('/api/relatorios/upd/:id', (req, res) => {
-  const relatorioIndex = relatorios.findIndex(r => r.id == req.params.id);
-  if (relatorioIndex !== -1) {
-      // Atualiza os dados
-      relatorios[relatorioIndex] = { id: req.params.id, ...req.body };
-      res.json(relatorios[relatorioIndex]);
-  } else {
-      res.status(404).json({ error: 'Relatório não encontrado' });
-  }
-});
+
 // Iniciar servidor
 rotas.listen(3031, () => {
   console.log("Servidor rodando na porta 3031");

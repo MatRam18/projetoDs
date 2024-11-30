@@ -37,7 +37,11 @@ async function exibirDetalhes() {
 
       // Exibir as informações no aside
       document.getElementById("finalidadeRelato").textContent = relatorio.finalidade;
-      document.getElementById("dataRelato").textContent = relatorio.data;
+
+      // Formatar a data para o formato brasileiro (dd/mm/aaaa)
+      const dataFormatada = formatarData(brParserDate(relatorio.data)); // Aqui a data é convertida corretamente
+      document.getElementById("dataRelato").textContent = dataFormatada;
+
       document.getElementById("descricaoRelato").textContent = relatorio.descricao;
       document.getElementById("componenteRelato").textContent = relatorio.componentes;
       document.getElementById("tarefaRelato").textContent = tarefa ? tarefa.nome : "Nenhuma tarefa";
@@ -47,6 +51,27 @@ async function exibirDetalhes() {
       alert("Erro ao buscar os relatórios. Verifique a URL ou a resposta do servidor.");
   }
 }
+
+
+// Função para formatar a data no formato brasileiro (dd/mm/aaaa)
+function formatarData(data) {
+  const dia = data.getDate().toString().padStart(2, '0'); // Adiciona 0 à frente de dias menores que 10
+  const mes = (data.getMonth() + 1).toString().padStart(2, '0'); // Adiciona 0 à frente de meses menores que 10
+  const ano = data.getFullYear(); // Pega o ano
+
+  return `${dia}/${mes}/${ano}`;
+}
+
+
+// Função para converter a string de data para um objeto Date
+function brParserDate(dataStr) {
+  const [dia, mes, ano] = dataStr.split('/');
+  
+  // Criando a data corretamente usando a abordagem yyyy-mm-dd
+  return new Date(`${ano}-${mes}-${dia}`);
+}
+
+
 
 
 // Função para obter o ID da URL
@@ -78,6 +103,8 @@ async function preencherTarefas() {
       console.error("Erro ao carregar as tarefas: ", erro);
   }
 }
+
+// Função para atualizar o relatório
 async function atualizarRelatorio() {
   const relatorioId = obterIdDaURL();  // Captura o id da URL
   
@@ -91,23 +118,27 @@ async function atualizarRelatorio() {
   const finalidade = document.getElementById("finalidade").value;
   const dataRelatorio = document.getElementById("dataRelatorio").value;
   const descricao = document.getElementById("descricaoRelatorio").value;
-  const componente = document.getElementById("componente").value;
+  const componente = document.getElementById("componente").value;  // Garantir que o campo componente está sendo capturado corretamente
   const tarefaId = document.getElementById("tarefa").value;  // ID da tarefa selecionada no select
   
-  // Verifica se todos os campos estão preenchidos
-  if (!finalidade || !dataRelatorio || !descricao || !componente) {
-    alert("Todos os campos devem ser preenchidos.");
+  console.log("Componente Capturado:", componente);  // Log para verificar o valor do componente
+
+  // Prepara o corpo da requisição, incluindo apenas os campos preenchidos
+  const dadosAtualizados = {};
+  
+  if (finalidade) dadosAtualizados.finalidade = finalidade;
+  if (dataRelatorio) dadosAtualizados.data = dataRelatorio;
+  if (descricao) dadosAtualizados.descricao = descricao;
+  if (componente) dadosAtualizados.componentes = componente;  // Garantir que 'componente' está sendo enviado corretamente
+  if (tarefaId) dadosAtualizados.tarefaId = tarefaId;
+
+  // Se nenhum campo for preenchido, alerta e não faz a requisição
+  if (Object.keys(dadosAtualizados).length === 0) {
+    alert("Pelo menos um campo deve ser preenchido.");
     return;
   }
 
-  // Prepara o corpo da requisição
-  const dadosAtualizados = {
-    finalidade: finalidade,
-    data: dataRelatorio,
-    descricao: descricao,
-    componentes: componente,
-    tarefaId: tarefaId ? tarefaId : null,  // Se não tiver tarefa selecionada, envia null
-  };
+  console.log("Dados Atualizados:", dadosAtualizados);  // Log para verificar os dados enviados
 
   try {
     // Envia a requisição PUT para atualizar o relatório
@@ -126,15 +157,17 @@ async function atualizarRelatorio() {
 
     const resultado = await resposta.json();
     alert("Relatório atualizado com sucesso!");
-    
-    // Você pode adicionar outras ações após o sucesso, como redirecionar o usuário ou limpar os campos
-    // window.location.href = "algum outro lugar";  // Exemplo de redirecionamento
+
+    // Redirecionar para a página de leitura de relatórios após a atualização
+    window.location.href = '../read/index.html';
 
   } catch (erro) {
     console.error("Erro ao atualizar o relatório:", erro);
     alert("Erro ao atualizar o relatório. Tente novamente.");
   }
 }
+
+
 
 // Carregar as tarefas e exibir os detalhes do relatório na página
 window.onload = function() {

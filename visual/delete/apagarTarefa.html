@@ -12,11 +12,10 @@
             <tr>
                 <th>
                     <label for="tarefa">Nome da Tarefa</label>
-                    <!-- Seu HTML permanece praticamente o mesmo, mas com a modificação no select -->
+                    <!-- Modificado para usar "tarefa" em vez de "relatório" -->
                     <select class="form-control" id="tarefa" required onchange="exibirDetalhes()">
-                        <option value="">Nenhuma tarefa</option> <!-- Nova opção para indicar 'nenhuma tarefa' -->
+                        <option value="">Nenhuma Tarefa</option> <!-- Nova opção para indicar 'nenhuma tarefa' -->
                     </select>
-
                 </th>
                 <th>
                     <button type="submit" class="confirmar" onclick="confirmarApagar()">Apagar Tarefa</button>
@@ -25,10 +24,10 @@
             <tr class="top">
                 <th id="lista" class="top">
                     <h3 id="nomeT">Nome:</h3>
+                    <h3 id="dataT">Data:</h3>
+                    <h3 id="descricaoT">Descrição:</h3>
+                    <h3 id="responsaveisT">Responsáveis:</h3>
                     <h3 id="setorT">Setor:</h3>
-                    <h3 id="dataT">Prazo:</h3>
-                    <h3 id="respT">Responsaveis:</h3>
-                    <h3 id="descT">Descrição:</h3>
                 </th>
                 <th id="certeza">
                     <!-- A confirmação será exibida aqui -->
@@ -36,6 +35,7 @@
             </tr>
         </table>
     </section>
+
     <div class="menu">
         <table class="tMenu">
             <tr>
@@ -64,6 +64,7 @@
             </tr>
         </table>
     </div>
+
     <script src="mainT.js"></script>
 </body>
 </html>

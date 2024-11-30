@@ -1,1 +1,97 @@
-cu
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Tarefa</title>
+    <link rel="stylesheet" href="styleUp.css">
+</head>
+<body>
+    <section>
+        <table class="top">
+            <tr>
+                <th class="top1" colspan="2">
+                    <h3 id="nomeTarefa">
+                        Nome da Tarefa:
+                        <input type="text" class="form-control-top" id="nome" required>
+                    </h3>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <h3 id="setorTarefa">
+                        Setor:<input type="text" class="form-control" id="setor" value="">
+                    </h3>
+                </th>
+                <th>
+                    <h3 id="dataTarefa">
+                        Data:<input type="date" class="form-control" id="data" value="">
+                    </h3>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <h3 id="descricaoTarefa">
+                        Descrição:<textarea class="form-control-desc" id="descricao"></textarea>
+                    </h3>
+                </th>
+                <th>
+                    <h3 id="responsaveisTarefa">
+                        Responsáveis:<input type="text" class="form-control" id="responsaveis" value="">
+                    </h3>
+                </th>
+            </tr>
+            <tr>
+                <th class="bota">
+                    <button type="button" class="confirmar" onclick="atualizarTarefa()">Atualizar Tarefa</button>
+                </th>
+            </tr>
+        </table>
+    </section>
+    <aside>
+        <table id="tarefaDetalhes" class="det">
+            <tr>
+                <td><b>Nome:</b></td>
+                <td id="nomeTarefaRelato"></td>
+            </tr>
+            <tr>
+                <td><b>Descrição:</b></td>
+                <td id="descricaoTarefaRelato"></td>
+            </tr>
+            <tr>
+                <td><b>Data:</b></td>
+                <td id="dataTarefaRelato"></td>
+            </tr>
+            <tr>
+                <td><b>Responsáveis:</b></td>
+                <td id="responsaveisTarefaRelato"></td>
+            </tr>
+            <tr>
+                <td><b>Setor:</b></td>
+                <td id="setorTarefaRelato"></td>
+            </tr>
+        </table>
+    </aside>
+    <div class="menu">
+        <table class="tMenu">
+            <tr>
+                <th>
+                    <form action="../read/index.html"><input type="submit" value="MENU" class="button"/></form>
+                </th>
+                <th>
+                    <form action=""><input type="submit" value="" class="button"/></form>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <form action="../create/menuCriar.html"><input type="submit" value="CRIAR" class="button"/></form>
+                </th>
+                <th>
+                    <form action="../delete/menuApagar.html"><input type="submit" value="APAGAR" class="button"/></form>
+                </th>
+            </tr>
+        </table>
+    </div>
+    <script src="mainT.js"></script>
+</body>
+</html>
