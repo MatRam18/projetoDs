@@ -33,7 +33,7 @@ async function exibirDetalhes() {
     if (!tarefaId) {
         // Se a opção 'Nenhuma Tarefa' for selecionada, apenas mostra os textos padrões
         document.getElementById('nomeT').textContent = 'Nome:';
-        document.getElementById('dataT').textContent = 'Data:';
+        document.getElementById('dataT').textContent = 'Prazo:';
         document.getElementById('descricaoT').textContent = 'Descrição:';
         document.getElementById('responsaveisT').textContent = 'Responsáveis:';
         document.getElementById('setorT').textContent = 'Setor:';
@@ -52,7 +52,7 @@ async function exibirDetalhes() {
             if (tarefaSelecionada) {
                 // Atualiza os campos com os detalhes da tarefa
                 document.getElementById('nomeT').textContent = `Nome: ${tarefaSelecionada.nome}`;
-                document.getElementById('dataT').textContent = `Data: ${new Date(tarefaSelecionada.data).toLocaleDateString()}`;
+                document.getElementById('dataT').textContent = `Prazo: ${new Date(tarefaSelecionada.data).toLocaleDateString()}`;
                 document.getElementById('descricaoT').textContent = `Descrição: ${tarefaSelecionada.descricao}`;
                 document.getElementById('responsaveisT').textContent = `Responsáveis: ${tarefaSelecionada.responsaveis}`;
                 document.getElementById('setorT').textContent = `Setor: ${tarefaSelecionada.setor}`;

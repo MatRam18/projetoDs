@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu de Criação</title>
     <link rel="stylesheet" href="styleCt.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJfT+1p3Q7zz8Jp6tR6CulYGzG92t93GG9nE24F0/8b0n1T3u0ySSWxYoZX6" crossorigin="anonymous">
 </head>
 <body>
     <section>
@@ -26,7 +27,7 @@
                     <tr>
                       <!-- Caixa de Seleção para Tarefa -->
                       <th>
-                        <label for="nomeTarefa">Nome da Tarefa</label>
+                        <label for="nomeTarefa">Tarefa Relacionada</label>
                         <select class="form-control" id="tarefa" required>
                           <!-- As opções serão preenchidas dinamicamente aqui -->
                         </select>
@@ -67,24 +68,24 @@
           <tr>
               <th>
                   <form action="../read/index.html">
-                      <input type="submit" value="MENU" class="button"/>
+                      <input type="submit" value="MENU" class="btn btn-warning"/>
                   </form>
               </th>
               <th>
-                  <form action="../update/menuAtualizar.html">
-                      <input type="submit" value="ATUALIZAR" class="button"/>
+                  <form action="">
+                      <input type="submit" value="" class="btn btn-warning"/>
                   </form>
               </th>
           </tr>
           <tr>
               <th>
                   <form action="../create/menuCriar.html">
-                      <input type="submit" value="VOLTAR" class="button"/>
+                      <input type="submit" value="VOLTAR" class="btn btn-warning"/>
                   </form>
               </th>
               <th>
                   <form action="../delete/menuApagar.html">
-                      <input type="submit" value="APAGAR" class="button"/>
+                      <input type="submit" value="APAGAR" class="btn btn-warning"/>
                   </form>
               </th>
           </tr>

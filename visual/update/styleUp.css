@@ -67,14 +67,20 @@ aside td {
 }
 
 
+/* Remover a largura e altura fixa dos botões */
 .button {
-    width: 100%;  /* Faz os botões dentro da .bota ocuparem toda a largura */
-    height: 5vh;
-    text-align: center;
+    width: auto;  /* Remover a largura fixa */
+    height: auto;  /* Remover a altura fixa */
+    padding: 10px 20px;  /* Adiciona um pouco de preenchimento para os botões */
 }
-.button2{
-    width: 80vh;
-    height: 40vh;
+
+/* Se você quiser personalizar os botões do Bootstrap mais profundamente */
+.btn {
+    width: 100%;
+    font-size: 16px;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 5px; /* Adiciona bordas arredondadas, se necessário */
 }
 
 .tMenu{

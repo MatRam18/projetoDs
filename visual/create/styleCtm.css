@@ -16,13 +16,25 @@ table, th, td {
     border-style: solid;
     table-layout: fixed;
 }
-.button{
-    width: 19.5vh;
-    height: 5vh;
+/* Remover a largura e altura fixa dos botões */
+.button {
+    width: auto;  /* Remover a largura fixa */
+    height: auto;  /* Remover a altura fixa */
+    padding: 10px 20px;  /* Adiciona um pouco de preenchimento para os botões */
 }
+
+/* Se você quiser personalizar os botões do Bootstrap mais profundamente */
+.btn {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px; /* Adiciona bordas arredondadas, se necessário */
+}
+
 .button2{
     width: 80vh;
     height: 40vh;
+    border-radius: 5px;
 }
 
 .tMenu{

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eliminar Relatório</title>
     <link rel="stylesheet" href="styleDl.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJfT+1p3Q7zz8Jp6tR6CulYGzG92t93GG9nE24F0/8b0n1T3u0ySSWxYoZX6" crossorigin="anonymous">
 </head>
 <body>
     <section>
@@ -41,29 +42,31 @@
             <tr>
                 <th>
                     <form action="../read/index.html">
-                        <input type="submit" value="MENU" class="button"/>
+                        <input type="submit" value="MENU" class="btn btn-warning"/>
                     </form>
                 </th>
                 <th>
-                    <form action="../update/menuAtualizar.html">
-                        <input type="submit" value="ATUALIZAR" class="button"/>
+                    <form action="">
+                        <!-- Alterando o tipo do botão para "button" -->
+                        <input type="button" value="" class="btn btn-warning" id="atualizar" />
+
                     </form>
                 </th>
             </tr>
             <tr>
                 <th>
                     <form action="../create/menuCriar.html">
-                        <input type="submit" value="CRIAR" class="button"/>
+                        <input type="submit" value="CRIAR" class="btn btn-primary"/>
                     </form>
                 </th>
                 <th>
                     <form action="../delete/menuApagar.html">
-                        <input type="submit" value="VOLTAR" class="button"/>
+                        <input type="submit" value="VOLTAR" class="btn btn-danger"/>
                     </form>
                 </th>
             </tr>
         </table>
-    </div>
+      </div>
 
     <script src="mainR.js"></script>
 </body>
